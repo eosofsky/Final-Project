@@ -6,10 +6,21 @@ public class AliceMovement : MonoBehaviour {
 
 	public float speed;
 
+	private static bool hasStarted = false;
+	private static Vector3 position;
+
 	private CharacterController characterController;
 
 	void Awake () {
 		characterController = GetComponent<CharacterController> ();
+		if (hasStarted) {
+			gameObject.transform.position = position;
+		}
+		hasStarted = true;
+	}
+
+	void OnDestroy () {
+		position = gameObject.transform.position;
 	}
 
 	void Update () {

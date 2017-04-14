@@ -5,6 +5,7 @@ using UnityEngine;
 public class Hammer : MonoBehaviour, Interactable {
 
 	public void Interact () {
+		Debug.Log ("ahhh");
 		Alice.hasHammer = true;
 		Destroy (gameObject);
 	}

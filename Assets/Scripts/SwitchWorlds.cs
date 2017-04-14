@@ -4,27 +4,33 @@ using UnityEngine;
 
 public class SwitchWorlds : MonoBehaviour {
 
-	private int physicalWorldMask;
-	private int digitalWorldMask;
-	private bool showingPhysicalWorld;
+	public static bool physical = true;
+
+	private static int physicalWorldMask;
+	private static int digitalWorldMask;
+	//private static bool hasLoaded = false;
 
 	void Awake () {
 		physicalWorldMask = Camera.main.cullingMask & ~(1 << LayerMask.NameToLayer("Digital World"));
 		digitalWorldMask = Camera.main.cullingMask & ~(1 << LayerMask.NameToLayer("Physical World"));
-		/* Start in physical world */
-		showingPhysicalWorld = false;
-		Switch ();
+		//if (!hasLoaded) {
+			/* Start in physical world */
+		//	showingPhysicalWorld = false;
+		//}
+		//hasLoaded = true;
+		Switch (physical);
 	}
 
-	void Update () {
+	/*void Update () {
 		if (Input.GetKeyDown (KeyCode.P)) {
 			Switch ();
 		}
-	}
+	}*/
 
-	public void Switch () {
+	/* Pass in world to switch to */
+	public void Switch (bool physical) {
 		/* Disable old world's colliders */
-		string tag = showingPhysicalWorld ? "PhysicalWorld" : "DigitalWorld";
+		string tag = physical ? "DigitalWorld" : "PhysicalWorld";
 		GameObject[] objs = GameObject.FindGameObjectsWithTag (tag);
 		for (int i = 0; i < objs.Length; i++) {
 			Collider collider = objs [i].GetComponent <Collider> ();
@@ -34,7 +40,7 @@ public class SwitchWorlds : MonoBehaviour {
 		}
 
 		/* Enable new world's colliders */
-		tag = showingPhysicalWorld ? "DigitalWorld" : "PhysicalWorld";
+		tag = physical ? "PhysicalWorld" : "DigitalWorld";
 		objs = GameObject.FindGameObjectsWithTag (tag);
 		for (int i = 0; i < objs.Length; i++) {
 			Collider collider = objs [i].GetComponent <Collider> ();
@@ -42,9 +48,16 @@ public class SwitchWorlds : MonoBehaviour {
 				collider.enabled = true;
 			}
 		}
+			
+		/* Switch permissions on Alice.exe */
+		if (physical) {
+			Filesystem.canRun [0] = true;
+		} else {	
+			Filesystem.canRun [0] = false; 
+		}
 
 		/* Make other world invisible */
-		Camera.main.cullingMask = showingPhysicalWorld ? digitalWorldMask : physicalWorldMask;
-		showingPhysicalWorld = !showingPhysicalWorld;
+		Camera.main.cullingMask = physical ? physicalWorldMask : digitalWorldMask;
+		//showingPhysicalWorld = !showingPhysicalWorld;
 	}
 }

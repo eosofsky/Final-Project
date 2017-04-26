@@ -8,6 +8,7 @@ public class Filesystem : MonoBehaviour {
 	public bool[] myCanEdit;
 	public bool[] myCanDelete;
 	public bool[] myCanRun;
+	public static string quitScene;
 
 	public static string[] files;
 	public static bool[] canEdit;

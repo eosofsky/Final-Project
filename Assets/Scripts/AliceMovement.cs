@@ -6,13 +6,15 @@ public class AliceMovement : MonoBehaviour {
 
 	public float speed;
 
-	private static bool hasStarted = false;
-	private static Vector3 position;
+	public static bool hasStarted = false;
+	public static Vector3 position;
 
 	private CharacterController characterController;
+	private static bool enabled;
 
 	void Awake () {
 		characterController = GetComponent<CharacterController> ();
+		enabled = true;
 		if (hasStarted) {
 			gameObject.transform.position = position;
 		}
@@ -24,7 +26,9 @@ public class AliceMovement : MonoBehaviour {
 	}
 
 	void Update () {
-		Move ();
+		if (enabled) {
+			Move ();
+		}
 
 		/* Move camera to follow Alice */
 		Vector3 target = transform.position;
@@ -35,6 +39,14 @@ public class AliceMovement : MonoBehaviour {
 	void Move () {
 		Vector3 movement = new Vector3 (speed * Input.GetAxis ("Horizontal"), speed * Input.GetAxis ("Vertical"), 0.0f);
 		characterController.Move (movement);
+	}
+
+	public static void EnableMovement() {
+		enabled = true;
+	}
+
+	public static void DisableMovement() {
+		enabled = false;
 	}
 
 }

@@ -12,19 +12,44 @@ public class Alice : MonoBehaviour {
 	private static SpriteRenderer spriteRender;
 	private static Sprite myDigitalAlice;
 	private static Sprite myPhysicalAlice;
+	private bool hasMoved;
 
 	void Awake () {
 		spriteRender = GetComponent<SpriteRenderer> ();
 		myDigitalAlice = digitalAlice;
 		myPhysicalAlice = physicalAlice;
+		hasMoved = false;
 	}
 
 	void Start () {
 		spriteRender.sprite = SwitchWorlds.physical ? myPhysicalAlice : myDigitalAlice;
+		string[] lines = {"Hello, I am Alice!", "Wow I can talk"};
+		Speech.Instance.Speak (lines, transform);
+	}
+
+	void Update () {
+		if (!hasMoved && (Input.GetAxis ("Horizontal") != 0 || Input.GetAxis ("Vertical") != 0)) {
+			hasMoved = true;
+		}
 	}
 
 	void OnControllerColliderHit (ControllerColliderHit hit) {
+		if (!hasMoved) {
+			return;
+		}
+
 		Interactable interactable = hit.collider.gameObject.GetComponent<Interactable> ();
+		if (interactable != null) {
+			interactable.Interact ();
+		}
+	}
+
+	void OnTriggerEnter (Collider collider) {
+		if (!hasMoved) {
+			return;
+		}
+
+		Interactable interactable = collider.gameObject.GetComponent<Interactable> ();
 		if (interactable != null) {
 			interactable.Interact ();
 		}

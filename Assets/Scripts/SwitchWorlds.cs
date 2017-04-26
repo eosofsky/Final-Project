@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SwitchWorlds : MonoBehaviour {
 
+	//public bool public_physical;
 	public static bool physical = true;
 
 	private static int physicalWorldMask;
@@ -18,6 +19,7 @@ public class SwitchWorlds : MonoBehaviour {
 		//	showingPhysicalWorld = false;
 		//}
 		//hasLoaded = true;
+		//physical = public_physical;
 		Switch (physical);
 	}
 

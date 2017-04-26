@@ -8,4 +8,5 @@ public class PersonalComputer : MonoBehaviour, Interactable {
 	public void Interact () {
 		SceneManager.LoadScene ("Chat");
 	}
+
 }

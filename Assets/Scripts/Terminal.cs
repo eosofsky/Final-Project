@@ -37,6 +37,8 @@ public class Terminal : MonoBehaviour {
 	}
 
 	void Start () {
+		SourceManager.oldScene = "";
+
 		if (hasLoaded) {
 			pastText.transform.position = pastTextPos;
 			inputField.transform.position = inputPos;
@@ -133,7 +135,7 @@ public class Terminal : MonoBehaviour {
 					pastText.text = string.Concat (pastText.text, "  ERROR: File not found");
 				}
 			} else if (input.Equals (quitCommand)) {
-				SceneManager.LoadScene ("Level1");
+				SceneManager.LoadScene (Filesystem.quitScene);
 			} else if (Regex.IsMatch (input, string.Concat (runCommand, "  *"))) {
 				string filename = input.Substring (runCommand.Length + 1);
 				bool found = false;
@@ -141,8 +143,10 @@ public class Terminal : MonoBehaviour {
 					if (Filesystem.files [i] != null && Filesystem.files [i].Equals (filename)) {
 						if (Filesystem.canRun [i]) {
 							if (filename.Equals ("Alice.exe")) {
-								SwitchWorlds.physical = false;
-								SceneManager.LoadScene ("Level1");
+								//SwitchWorlds.physical = false;
+								Filesystem.canRun [0] = false;
+								SourceManager.oldScene = SceneManager.GetActiveScene ().name;
+								SceneManager.LoadScene ("Bus Station");
 							} else {
 								pastText.text = string.Concat (pastText.text, inputField.text);
 								NewLine ();

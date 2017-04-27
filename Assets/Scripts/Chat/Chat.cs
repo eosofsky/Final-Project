@@ -8,14 +8,18 @@ using UnityEngine.EventSystems;
 public class Chat : MonoBehaviour {
 
 	public int maxLineCount = 12;
+	public float delay = 1f;
 
 	private Text pastText;
 	private InputField inputField;
 	private GameObject window;
 	private static string text;
 	private static int lineCount;
-	private static bool hasLoaded = false;
+	private static int step = -1;
+	private static bool stepStarted = false;
 	private float lineSize = 0.3f;
+	private static bool canType;
+	private static bool lookingForSecretResponse = false;
 
 	void Awake () {
 		pastText = GameObject.Find ("Past Text").GetComponent<Text> ();
@@ -25,7 +29,11 @@ public class Chat : MonoBehaviour {
 	}
 
 	void Start () {
+		CloseChat.Disable ();
 		ReFocus ();
+		if (step < 0) {
+			step++;
+		}
 	}
 
 	void OnDestroy () {
@@ -33,13 +41,42 @@ public class Chat : MonoBehaviour {
 	}
 
 	void Update () {
-		if (Input.GetKeyDown (KeyCode.Return)) {
-			pastText.text = string.Concat (pastText.text, "You: ", inputField.text);
+		if (Input.GetKeyDown (KeyCode.Return) && canType) {
+			string userInput = inputField.text;
+			pastText.text = string.Concat (pastText.text, "You: ", userInput);
 			NewLine ();
+			canType = false;
+			step++;
+			stepStarted = false;
+			if (lookingForSecretResponse && userInput.Equals ("Fuck you")) {
+				lookingForSecretResponse = false;
+				StartCoroutine (WhiteRabbit4 ());
+			}
 		}
 
-		if (Input.GetKeyDown (KeyCode.P)) {
-			WhiteRabbitSpeak ("I am late!");
+		if (!stepStarted) {
+			switch (step) {
+			case 0:
+				stepStarted = true;
+				StartCoroutine (WhiteRabbit0 ());
+				break;
+			case 1:
+				stepStarted = true;
+				StartCoroutine (WhiteRabbit1 ());
+				break;
+			case 2:
+				stepStarted = true;
+				StartCoroutine (WhiteRabbit2 ());
+				break;
+			case 3:
+				stepStarted = true;
+				StartCoroutine (WhiteRabbit3 ());
+				break;
+			default:
+				canType = true;
+				CloseChat.Enable ();
+				break;
+			}
 		}
 	}
 
@@ -62,8 +99,82 @@ public class Chat : MonoBehaviour {
 		inputField.ActivateInputField ();
 	}
 
-	private void WhiteRabbitSpeak (string text) {
-		pastText.text = string.Concat (pastText.text, "White Rabbit: ", text);
+	private void WhiteRabbitSpeak (string text, bool withName) {
+		if (withName) {
+			pastText.text = string.Concat (pastText.text, "White Rabbit: ", text);
+		} else {
+			pastText.text = string.Concat (pastText.text, "          ", text);
+		}
 		NewLine ();
+	}
+
+	IEnumerator WhiteRabbit0 () {
+		canType = false;
+		WhiteRabbitSpeak ("Hi Alice.", true);
+		yield return new WaitForSeconds (delay);
+		WhiteRabbitSpeak ("What a pleasure to meet you (:", false);
+		yield return new WaitForSeconds (delay);
+		WhiteRabbitSpeak ("Thanks to your incompetence, I", false);
+		WhiteRabbitSpeak ("have managed to burrow my", false);
+		WhiteRabbitSpeak ("way into your servers. ", false);
+		canType = true;
+	}
+
+	IEnumerator WhiteRabbit1 () {
+		canType = false;
+		yield return new WaitForSeconds (delay);
+		WhiteRabbitSpeak ("Well, if you will excuse", true);
+		WhiteRabbitSpeak ("me,", false);
+		yield return new WaitForSeconds (delay);
+		WhiteRabbitSpeak ("I’ve got some work to do.", false);
+		yield return new WaitForSeconds (1.5f*delay);
+		WhiteRabbitSpeak ("Lots of money to be", false);
+		WhiteRabbitSpeak ("made today with all these", false);
+		WhiteRabbitSpeak ("data on your servers.", false);
+		yield return new WaitForSeconds (delay);
+		WhiteRabbitSpeak ("Trololololo", false);
+		canType = true;
+	}
+
+	IEnumerator WhiteRabbit2 () {
+		canType = false;
+		yield return new WaitForSeconds (delay);
+		WhiteRabbitSpeak ("This is an automated", true);
+		WhiteRabbitSpeak ("reply.", false);
+		yield return new WaitForSeconds (delay);
+		WhiteRabbitSpeak ("I'm sorry, I can't come to", false);
+		WhiteRabbitSpeak ("the keyboard right now because", false);
+		WhiteRabbitSpeak ("I'm too busy talking to your", false);
+		WhiteRabbitSpeak ("servers!", false);
+		yield return new WaitForSeconds (delay);
+		WhiteRabbitSpeak ("If you need to reach me,", false);
+		WhiteRabbitSpeak ("have fun and good luck?!?!", false);
+		WhiteRabbitSpeak ("Trolololololo", false);
+		canType = true;
+	}
+
+	IEnumerator WhiteRabbit3 () {
+		canType = false;
+		yield return new WaitForSeconds (delay);
+		WhiteRabbitSpeak ("Time is of the essence,", true);
+		WhiteRabbitSpeak ("I can't talk much; bye bye!", false);
+		yield return new WaitForSeconds (delay);
+		WhiteRabbitSpeak ("I can't think of how to", false);
+		WhiteRabbitSpeak ("thank you enough! You can", false);
+		WhiteRabbitSpeak ("try to trace me down, but", false);
+		yield return new WaitForSeconds (delay);
+		WhiteRabbitSpeak ("you couldn't find me even", false);
+		WhiteRabbitSpeak ("if you tried!", false);
+		canType = true;
+		lookingForSecretResponse = true;
+		CloseChat.Enable ();
+		AliceDialogue.Advance ();
+	}
+
+	IEnumerator WhiteRabbit4 () {
+		canType = false;
+		yield return new WaitForSeconds (delay);
+		WhiteRabbitSpeak ("Lololol fuck u l0s3r", true);
+		canType = true;
 	}
 }

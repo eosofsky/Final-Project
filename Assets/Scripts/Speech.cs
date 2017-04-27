@@ -5,9 +5,11 @@ using UnityEngine.UI;
 
 public class Speech : MonoBehaviour {
 
+	public delegate void Callback ();
+
 	public static Speech Instance;
-	public Vector3 offset;
-	public float padding;
+	public float hPadding;
+	public float vPadding;
 
 	private Text text;
 	private Image image;
@@ -15,6 +17,8 @@ public class Speech : MonoBehaviour {
 	private string[] currentDialogue;
 	private int currentDialogueIndex;
 	private Transform currentCharacter;
+	private float offset;
+	private Callback callback;
 
 	void Awake () {
 		Instance = this;
@@ -36,34 +40,41 @@ public class Speech : MonoBehaviour {
 				}
 			}
 
-			text.transform.position = Camera.main.WorldToScreenPoint (currentCharacter.position) + offset;
+			text.transform.position = Camera.main.WorldToScreenPoint (currentCharacter.position) + new Vector3 (0.0f, offset, 0.0f);
 			image.transform.position = text.transform.position;
-			image.rectTransform.SetSizeWithCurrentAnchors (RectTransform.Axis.Horizontal, text.rectTransform.rect.width + padding);
+			image.rectTransform.SetSizeWithCurrentAnchors (RectTransform.Axis.Horizontal, text.rectTransform.rect.width + hPadding);
+			image.rectTransform.SetSizeWithCurrentAnchors (RectTransform.Axis.Vertical, text.rectTransform.rect.height + vPadding);
 		}
 	}
 
-	public void Speak (string[] dialogue, Transform character) {
+	public void Speak (string[] dialogue, Transform character, float newOffset, Callback myCallback) {
 		currentDialogue = dialogue;
 		currentDialogueIndex = 0;
 		currentCharacter = character;
+		offset = newOffset;
+		callback = myCallback;
 		//AliceMovement.DisableMovement ();
 		SpeakLine ();
 	}
 
 	private void SpeakLine () {
-		Debug.Log ("here");
 		text.text = currentDialogue[currentDialogueIndex];
-		text.transform.position = Camera.main.WorldToScreenPoint (currentCharacter.position) + offset;
+		text.transform.position = Camera.main.WorldToScreenPoint (currentCharacter.position) + new Vector3 (0.0f, offset, 0.0f);
 		text.enabled = true;
 		image.transform.position = text.transform.position;
-		image.rectTransform.SetSizeWithCurrentAnchors (RectTransform.Axis.Horizontal, text.rectTransform.rect.width + padding);
+		image.rectTransform.SetSizeWithCurrentAnchors (RectTransform.Axis.Horizontal, text.rectTransform.rect.width + hPadding);
+		image.rectTransform.SetSizeWithCurrentAnchors (RectTransform.Axis.Vertical, text.rectTransform.rect.height + vPadding);
 		image.enabled = true;
 		waitingForDismiss = true;
 	}
 
-	private void StopSpeaking () {
+	public void StopSpeaking () {
 		text.enabled = false;
 		image.enabled = false;
+		waitingForDismiss = false;
+		if (callback != null) {
+			callback ();
+		}
 		//AliceMovement.EnableMovement ();
 	}
 		

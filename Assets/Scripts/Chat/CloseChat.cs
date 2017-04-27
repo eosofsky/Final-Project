@@ -5,7 +5,19 @@ using UnityEngine.SceneManagement;
 
 public class CloseChat : MonoBehaviour {
 
+	private static bool canClose;
+
 	public void Close () {
-		SceneManager.LoadScene ("Level1");
+		if (canClose) {
+			SceneManager.LoadScene ("Hub");
+		}
+	}
+
+	public static void Enable () {
+		canClose = true;
+	}
+
+	public static void Disable () {
+		canClose = false;
 	}
 }

@@ -23,8 +23,6 @@ public class Alice : MonoBehaviour {
 
 	void Start () {
 		spriteRender.sprite = SwitchWorlds.physical ? myPhysicalAlice : myDigitalAlice;
-		string[] lines = {"Hello, I am Alice!", "Wow I can talk"};
-		Speech.Instance.Speak (lines, transform);
 	}
 
 	void Update () {

@@ -89,6 +89,8 @@ public class Terminal : MonoBehaviour {
 						if (Filesystem.canEdit [i]) {
 							if (filename.Equals ("Tools.cs")) {
 								SceneManager.LoadScene ("Tools");
+							} else if (filename.Equals ("Walrus.cs")) {
+								SceneManager.LoadScene ("Garbage Collector");
 							} else {
 								pastText.text = string.Concat (pastText.text, inputField.text);
 								NewLine ();
@@ -119,9 +121,9 @@ public class Terminal : MonoBehaviour {
 							Filesystem.files [i] = null;
 							pastText.text = string.Concat (pastText.text, string.Concat ("  SUCCESS: Removed ", filename));
 							numFiles--;
-							if (filename.Equals ("Walrus.txt")) {
-								WalrusManager.KillWalrus ();
-							}
+							//if (filename.Equals ("Walrus.txt")) {
+							//	WalrusManager.KillWalrus ();
+							//}
 						} else {
 							pastText.text = string.Concat (pastText.text, string.Concat ("  ERROR: Permission denied"));
 						}

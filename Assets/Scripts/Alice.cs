@@ -52,5 +52,11 @@ public class Alice : MonoBehaviour {
 			interactable.Interact ();
 		}
 	}
+
+	public static void ExtinguishFire () {
+		//RandomFiles.HideFiles ();
+		Mail.Activate ();
+		BusStation.busIsFixed = true;
+	}
 		
 }

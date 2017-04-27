@@ -15,6 +15,8 @@ public class Terminal : MonoBehaviour {
 	public string deleteCommand;
 	public string quitCommand;
 	public string runCommand;
+	public string pauseCommand;
+	public string helpCommand;
 
 	private static string text = ">>> ";
 	private Text pastText;
@@ -28,6 +30,7 @@ public class Terminal : MonoBehaviour {
 	private static Vector3 pastTextStartingPos;
 	private static Vector3 pastTextPos;
 	private static int numFiles;
+	private static bool isRunningProgram = false;
 
 	void Awake () {
 		pastText = GameObject.Find ("Past Text").GetComponent<Text> ();
@@ -149,6 +152,7 @@ public class Terminal : MonoBehaviour {
 								Filesystem.canRun [0] = false;
 								SourceManager.oldScene = SceneManager.GetActiveScene ().name;
 								SceneManager.LoadScene ("Bus Station");
+								isRunningProgram = true;
 							} else {
 								pastText.text = string.Concat (pastText.text, inputField.text);
 								NewLine ();
@@ -168,6 +172,31 @@ public class Terminal : MonoBehaviour {
 					NewLine ();
 					pastText.text = string.Concat (pastText.text, "  ERROR: File not found");
 				}
+			} else if (input.Equals (pauseCommand)) { 
+				if (isRunningProgram) {
+					Filesystem.canRun [0] = true;
+					SceneManager.LoadScene ("Hub");
+					SourceManager.oldScene = SceneManager.GetActiveScene ().name;
+					isRunningProgram = false;
+				}
+			} else if (input.Equals (helpCommand)) { 
+				pastText.text = string.Concat (pastText.text, inputField.text);
+				NewLine ();
+				pastText.text = string.Concat (pastText.text, listCommand, " - Lists available files");
+				NewLine ();
+				pastText.text = string.Concat (pastText.text, openCommand, " <filename> - Opens a file");
+				NewLine ();
+				pastText.text = string.Concat (pastText.text, clearCommand, " - Clears the terminal screen");
+				NewLine ();
+				pastText.text = string.Concat (pastText.text, deleteCommand, " <filename> - Deletes a file");
+				NewLine ();
+				pastText.text = string.Concat (pastText.text, quitCommand, " - Quits out of the terminal");
+				NewLine ();
+				pastText.text = string.Concat (pastText.text, runCommand, " <filename> - Runs an executable");
+				NewLine ();
+				pastText.text = string.Concat (pastText.text, pauseCommand, " - pauses execution of running program");
+				NewLine ();
+				pastText.text = string.Concat (pastText.text, helpCommand, " - I betcha can figure this one out on your own ;)");
 			} else if (input.Equals ("")) {
 			} else {
 				pastText.text = string.Concat (pastText.text, inputField.text);

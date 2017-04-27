@@ -5,6 +5,7 @@ using UnityEngine;
 public class BusStation : MonoBehaviour {
 
 	public static bool hasLoaded = false;
+	public static bool busIsFixed = false;
 
 	void Awake () {
 		if (!hasLoaded) {
@@ -12,4 +13,13 @@ public class BusStation : MonoBehaviour {
 		}
 		hasLoaded = true;
 	}
+
+	void Start () {
+		if (busIsFixed) {
+			Destroy (GameObject.Find ("out_of_order"));
+			Bus.shouldDrive = true;
+			//GameObject.Find ("Bus").GetComponent<Bus> ().shouldDrive = true;
+		}
+	}
+
 }

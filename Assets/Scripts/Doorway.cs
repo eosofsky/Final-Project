@@ -5,12 +5,16 @@ using UnityEngine.SceneManagement;
 
 public class Doorway : MonoBehaviour, Interactable {
 
+	public static bool canPass = false;
+
 	public string destinationName;
 	public string sourceName;
 
 	public void Interact () {
-		SourceManager.oldScene = sourceName;
-		SceneManager.LoadScene (destinationName);
-		AliceMovement.hasStarted = false;
+		if (canPass) {
+			SourceManager.oldScene = sourceName;
+			SceneManager.LoadScene (destinationName);
+			AliceMovement.hasStarted = false;
+		}
 	}
 }

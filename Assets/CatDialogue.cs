@@ -37,6 +37,10 @@ public class CatDialogue : MonoBehaviour {
 				stepStarted = true;
 				CatDialogue5 ();
 				break;
+			case 6:
+				stepStarted = true;
+				CatDialogue6 ();
+				break;
 			default:
 				break;
 			}
@@ -90,12 +94,30 @@ public class CatDialogue : MonoBehaviour {
 		SpriteRenderer render = Cat.gameObject.GetComponent<SpriteRenderer> ();
 		render.enabled = true;
 		string[] lines = {"..And FAST! I’m sure that sleazy cottontail\nhas terrible things up his sleeve.", "You should probably head to Server B. Get a grip!!"};
-		Speech.Instance.Speak (lines, Cat.transform, 200.0f, DisappearAndAdvanceAlice);
+		Speech.Instance.Speak (lines, Cat.transform, 200.0f, DisappearAndFilesSpeak);
+	}
+
+	public static void CatDialogue6 () {
+		GameObject Cat = GameObject.Find ("Cat");
+		SpriteRenderer render = Cat.gameObject.GetComponent<SpriteRenderer> ();
+		render.enabled = true;
+		string[] lines = {"A fire? Must be the White\nRabbit’s doing again!"};
+		Speech.Instance.Speak (lines, Cat.transform, 200.0f, IgniteAndDisappear);
 	}
 
 	private static void DisappearAndAdvanceAlice () {
 		Disappear ();
 		AliceDialogue.Advance ();
+	}
+
+	private static void DisappearAndFilesSpeak () {
+		Disappear ();
+		RandomFiles.FilesSpeak ();
+	}
+
+	private static void IgniteAndDisappear () {
+		Disappear ();
+		SwitchHub.ignite = true;
 	}
 
 	private static void Disappear () {

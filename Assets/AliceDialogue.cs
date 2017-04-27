@@ -34,6 +34,10 @@ public class AliceDialogue : MonoBehaviour {
 				stepStarted = true;
 				AliceDialogue5 ();
 				break;
+			case 6:
+				stepStarted = true;
+				AliceDialogue6 ();
+				break;
 			default:
 				break;
 			}
@@ -74,6 +78,12 @@ public class AliceDialogue : MonoBehaviour {
 		string[] lines = { "Great, now the garbage collector is doing what it needs to.", "Urg, I wonder what else the\nWhite Rabbit has messed up.", "I better stop him."};
 		GameObject Alice = GameObject.Find ("Alice");
 		Speech.Instance.Speak (lines, Alice.transform, 200.0f, CatDialogue.Advance);
+	}
+
+	public static void AliceDialogue6 () {
+		string[] lines = { "There. That explains it.", "The ethernet cables connecting Server A to\nServer B has overheated and burnt down.", "How could this be?", "These wires are able to handle 50Gbits of\ntraffic per minute… Unless..", "someone has been transporting way more\ndata than that across the wire."};
+		GameObject alice = GameObject.Find ("Alice");
+		Speech.Instance.Speak (lines, alice.transform, 200.0f, Alice.ExtinguishFire);
 	}
 
 	public static void Advance () {

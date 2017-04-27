@@ -41,6 +41,10 @@ public class CatDialogue : MonoBehaviour {
 				stepStarted = true;
 				CatDialogue6 ();
 				break;
+			case 7:
+				stepStarted = true;
+				CatDialogue7 ();
+				break;
 			default:
 				break;
 			}
@@ -74,13 +78,13 @@ public class CatDialogue : MonoBehaviour {
 		SpriteRenderer render = Cat.gameObject.GetComponent<SpriteRenderer> ();
 		render.enabled = true;
 		string[] lines = { "Oh.. Looks like the White Rabbit\nreally messed things up here!", "Walrus the garbage collector is just\nnot doing his job properly anymore."};
-		Speech.Instance.Speak (lines, Cat.transform, 200.0f, StartTimer);
+		Speech.Instance.Speak (lines, Cat.transform, 200.0f, /*StartTimer*/Advance);
 	}
 
 	public static void CatDialogue3 () {
 		GameObject Cat = GameObject.Find ("Cat");
 		string[] lines = { "The thing about memory, Alice,", "is that it needs to be cleared when\nit is not being used anymore!\nNot when it is still in use!", "No wonder things are messing up."};
-		Speech.Instance.Speak (lines, Cat.transform, 200.0f, StartTimer);
+		Speech.Instance.Speak (lines, Cat.transform, 200.0f, /*StartTimer*/Advance);
 	}
 
 	public static void CatDialogue4 () {
@@ -102,6 +106,14 @@ public class CatDialogue : MonoBehaviour {
 		SpriteRenderer render = Cat.gameObject.GetComponent<SpriteRenderer> ();
 		render.enabled = true;
 		string[] lines = {"A fire? Must be the White\nRabbit’s doing again!"};
+		Speech.Instance.Speak (lines, Cat.transform, 200.0f, IgniteAndDisappear);
+	}
+
+	public static void CatDialogue7 () {
+		GameObject Cat = GameObject.Find ("Cat");
+		SpriteRenderer render = Cat.gameObject.GetComponent<SpriteRenderer> ();
+		render.enabled = true;
+		string[] lines = {"Looks like you may need to go back\nto the software to fix this silverware!", "Maybe there're some tools you can use?"};
 		Speech.Instance.Speak (lines, Cat.transform, 200.0f, IgniteAndDisappear);
 	}
 
@@ -132,7 +144,11 @@ public class CatDialogue : MonoBehaviour {
 	}
 
 	public static void Advance () {
-		step++;
+		if (step < -1) {
+			step = -step;
+		} else {
+			step++;
+		}
 		stepStarted = false;
 	}
 }

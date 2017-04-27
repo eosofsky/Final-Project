@@ -49,6 +49,7 @@ public class Speech : MonoBehaviour {
 
 	public void Speak (string[] dialogue, Transform character, float newOffset, Callback myCallback) {
 		Doorway.canPass = false;
+		OpenTerminal.canOpen = false;
 		currentDialogue = dialogue;
 		currentDialogueIndex = 0;
 		currentCharacter = character;
@@ -74,6 +75,7 @@ public class Speech : MonoBehaviour {
 		image.enabled = false;
 		waitingForDismiss = false;
 		Doorway.canPass = true;
+		OpenTerminal.canOpen = true;
 		if (callback != null) {
 			callback ();
 		}

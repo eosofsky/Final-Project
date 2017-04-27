@@ -9,6 +9,7 @@ public class Alice : MonoBehaviour {
     public static bool hatActive = false;
 	public Sprite digitalAlice;
 	public Sprite physicalAlice;
+	public bool physical;
 
 	private static SpriteRenderer spriteRender;
 	private static Sprite myDigitalAlice;
@@ -23,7 +24,8 @@ public class Alice : MonoBehaviour {
 	}
 
 	void Start () {
-		spriteRender.sprite = SwitchWorlds.physical ? myPhysicalAlice : myDigitalAlice;
+		//spriteRender.sprite = SwitchWorlds.physical ? myPhysicalAlice : myDigitalAlice;
+		spriteRender.sprite = physical ? myPhysicalAlice : myDigitalAlice;
 	}
 
 	void Update () {

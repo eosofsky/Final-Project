@@ -6,6 +6,7 @@ public class Alice : MonoBehaviour {
 
 	public static bool hasHammer = false;
 	public static bool hasHat;
+    public static bool hatActive = false;
 	public Sprite digitalAlice;
 	public Sprite physicalAlice;
 
@@ -29,6 +30,11 @@ public class Alice : MonoBehaviour {
 		if (!hasMoved && (Input.GetAxis ("Horizontal") != 0 || Input.GetAxis ("Vertical") != 0)) {
 			hasMoved = true;
 		}
+
+        if (Input.GetKeyDown(KeyCode.H))
+        {
+            hatActive = true;
+        }
 	}
 
 	void OnControllerColliderHit (ControllerColliderHit hit) {

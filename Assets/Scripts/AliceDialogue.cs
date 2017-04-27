@@ -38,6 +38,18 @@ public class AliceDialogue : MonoBehaviour {
 				stepStarted = true;
 				AliceDialogue6 ();
 				break;
+			case 7:
+				stepStarted = true;
+				AliceDialogue7 ();
+				break;
+			case 8:
+				stepStarted = true;
+				AliceDialogue8 ();
+				break;
+			case 9:
+				stepStarted = true;
+				AliceDialogue9 ();
+				break;
 			default:
 				break;
 			}
@@ -71,6 +83,7 @@ public class AliceDialogue : MonoBehaviour {
 	public static void AliceDialogue4 () {
 		string[] lines = { "Something must be wrong with its code.."};
 		GameObject Alice = GameObject.Find ("Alice");
+		Filesystem.canEdit [Filesystem.GetIndexFromFilename ("Walrus.cs")] = true;
 		Speech.Instance.Speak (lines, Alice.transform, 200.0f, null);
 	}
 
@@ -86,8 +99,30 @@ public class AliceDialogue : MonoBehaviour {
 		Speech.Instance.Speak (lines, alice.transform, 200.0f, Alice.ExtinguishFire);
 	}
 
+	public static void AliceDialogue7 () {
+		string[] lines = {"It’s all the White Rabbit’s doing..", "I will stop him before he can wreck any more havoc."};
+		GameObject alice = GameObject.Find ("Alice");
+		Speech.Instance.Speak (lines, alice.transform, 200.0f, HackerDialogue.Advance);
+	}
+
+	public static void AliceDialogue8 () {
+		string[] lines = {"How would I be able to find those CORE FILES?"};
+		GameObject alice = GameObject.Find ("Alice");
+		Speech.Instance.Speak (lines, alice.transform, 200.0f, HackerDialogue.Advance);
+	}
+
+	public static void AliceDialogue9 () {
+		string[] lines = {"Crap. My worst fears have been confirmed, White\nRabbit is stealing all of this data!", "I have to stop him with my virus removal tool!"};
+		GameObject alice = GameObject.Find ("Alice");
+		Speech.Instance.Speak (lines, alice.transform, 200.0f, null);
+	}
+
 	public static void Advance () {
-		step++;
+		if (step < -1) {
+			step = -step;
+		} else {
+			step++;
+		}
 		stepStarted = false;
 	}
 }

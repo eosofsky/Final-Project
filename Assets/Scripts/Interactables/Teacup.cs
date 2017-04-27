@@ -9,6 +9,7 @@ public class Teacup : MonoBehaviour, Interactable {
 
 	private SpriteRenderer spriteRenderer;
 	private bool broken;
+	private static bool first = true;
 
 	void Awake () {
 		spriteRenderer = GetComponent<SpriteRenderer> ();
@@ -21,6 +22,11 @@ public class Teacup : MonoBehaviour, Interactable {
 			spriteRenderer.sprite = brokenSprite;
 			broken = true;
 			Destroy (gameObject.GetComponent<Collider> ());
+			if (first) {
+				HackerDialogue.Advance ();
+				first = false;
+			}
+
 		}
 	}
 }

@@ -7,8 +7,12 @@ public class OpenTerminal : MonoBehaviour, Interactable {
 
 	public string quitScene;
 
+	public static bool canOpen = true;
+
 	public void Interact () {
-		Filesystem.quitScene = quitScene;
-		SceneManager.LoadScene ("Terminal");
+		if (canOpen) {
+			Filesystem.quitScene = quitScene;
+			SceneManager.LoadScene ("Terminal");
+		}
 	}
 }

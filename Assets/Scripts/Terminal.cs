@@ -72,11 +72,11 @@ public class Terminal : MonoBehaviour {
 					NewLine ();
 				}
 				for (int i = 0; i < Filesystem.files.Length; i++) {
-					if (Filesystem.files [i] == null) {
+					if ((Filesystem.files [i] == null) || (Filesystem.visible [i] == false)) {
 						continue;
 					}
 					pastText.text = string.Concat (pastText.text, "  ", Filesystem.files [i]);
-					if (i != Filesystem.files.Length - 1 && Filesystem.files [i + 1] != null) {
+					if (i != Filesystem.files.Length - 1 && Filesystem.files [i + 1] != null && Filesystem.visible [i + 1]) {
 						NewLine ();
 					}
 				}
@@ -89,22 +89,24 @@ public class Terminal : MonoBehaviour {
 				bool found = false;
 				for (int i = 0; i < Filesystem.files.Length; i++) {
 					if (Filesystem.files [i] != null && Filesystem.files [i].Equals (filename)) {
-						if (Filesystem.canEdit [i]) {
-							if (filename.Equals ("Tools.cs")) {
-								SceneManager.LoadScene ("Tools");
-							} else if (filename.Equals ("Walrus.cs")) {
-								SceneManager.LoadScene ("Garbage Collector");
+						if (Filesystem.visible [i]) {
+							if (Filesystem.canEdit [i]) {
+								if (filename.Equals ("Tools.cs")) {
+									SceneManager.LoadScene ("Tools");
+								} else if (filename.Equals ("Walrus.cs")) {
+									SceneManager.LoadScene ("Garbage Collector");
+								} else {
+									pastText.text = string.Concat (pastText.text, inputField.text);
+									NewLine ();
+									pastText.text = string.Concat (pastText.text, string.Concat ("  ERROR: Permission denied"));
+								}
 							} else {
 								pastText.text = string.Concat (pastText.text, inputField.text);
 								NewLine ();
 								pastText.text = string.Concat (pastText.text, string.Concat ("  ERROR: Permission denied"));
 							}
-						} else {
-							pastText.text = string.Concat (pastText.text, inputField.text);
-							NewLine ();
-							pastText.text = string.Concat (pastText.text, string.Concat ("  ERROR: Permission denied"));
+							found = true;
 						}
-						found = true;
 						break;
 					}
 				}
@@ -117,7 +119,7 @@ public class Terminal : MonoBehaviour {
 				string filename = input.Substring (deleteCommand.Length + 1);
 				bool found = false;
 				for (int i = 0; i < Filesystem.files.Length; i++) {
-					if (Filesystem.files [i] != null && Filesystem.files [i].Equals (filename)) {
+					if (Filesystem.files [i] != null && Filesystem.files [i].Equals (filename) && Filesystem.visible [i]) {
 						pastText.text = string.Concat (pastText.text, inputField.text);
 						NewLine ();
 						if (Filesystem.canDelete [i]) {
@@ -146,24 +148,28 @@ public class Terminal : MonoBehaviour {
 				bool found = false;
 				for (int i = 0; i < Filesystem.files.Length; i++) {
 					if (Filesystem.files [i] != null && Filesystem.files [i].Equals (filename)) {
-						if (Filesystem.canRun [i]) {
-							if (filename.Equals ("Alice.exe")) {
-								//SwitchWorlds.physical = false;
-								Filesystem.canRun [0] = false;
-								SourceManager.oldScene = SceneManager.GetActiveScene ().name;
-								SceneManager.LoadScene ("Bus Station");
-								isRunningProgram = true;
+						if (Filesystem.visible [i]) {
+							if (Filesystem.canRun [i]) {
+								if (filename.Equals ("Alice.exe")) {
+									//SwitchWorlds.physical = false;
+									Filesystem.canRun [0] = false;
+									SourceManager.oldScene = SceneManager.GetActiveScene ().name;
+									SceneManager.LoadScene ("Bus Station");
+									isRunningProgram = true;
+								} else if (filename.Equals ("Anti-virus.exe")) {
+									RabbitDialogue.Advance ();
+								} else {
+									pastText.text = string.Concat (pastText.text, inputField.text);
+									NewLine ();
+									pastText.text = string.Concat (pastText.text, string.Concat ("  ERROR: Permission denied"));
+								}
 							} else {
 								pastText.text = string.Concat (pastText.text, inputField.text);
 								NewLine ();
 								pastText.text = string.Concat (pastText.text, string.Concat ("  ERROR: Permission denied"));
 							}
-						} else {
-							pastText.text = string.Concat (pastText.text, inputField.text);
-							NewLine ();
-							pastText.text = string.Concat (pastText.text, string.Concat ("  ERROR: Permission denied"));
+							found = true;
 						}
-						found = true;
 						break;
 					}
 				}
@@ -178,6 +184,10 @@ public class Terminal : MonoBehaviour {
 					SceneManager.LoadScene ("Hub");
 					SourceManager.oldScene = SceneManager.GetActiveScene ().name;
 					isRunningProgram = false;
+				} else {
+					pastText.text = string.Concat (pastText.text, inputField.text);
+					NewLine ();
+					pastText.text = string.Concat (pastText.text, "  ERROR: No program running");
 				}
 			} else if (input.Equals (helpCommand)) { 
 				pastText.text = string.Concat (pastText.text, inputField.text);

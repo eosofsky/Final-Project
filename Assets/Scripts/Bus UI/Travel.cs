@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class Travel : MonoBehaviour {
 
 	public void GoToTerminalA () {
-		SceneManager.LoadScene ("Bus Station");
+		SceneManager.LoadScene ("Bus Station 1");
 	}
 
 	public void GoToTerminalB () {

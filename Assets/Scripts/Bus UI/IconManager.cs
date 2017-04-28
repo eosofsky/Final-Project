@@ -10,9 +10,13 @@ public class IconManager : MonoBehaviour {
 	public Sprite IconBoss;
 
 	void Awake () {
+		Image image = GameObject.Find ("Bus UI 1").GetComponent<Image> ();
 		if (SourceManager.oldScene.Equals ("Bus Exterior 1") || SourceManager.oldScene.Equals ("Bus Exterior 2")) {
-			Image image1 = GameObject.Find ("Bus UI 1").GetComponent<Image> ();
-			image1.sprite = Icon1;
+			image.sprite = Icon1;
+		} else if (SourceManager.oldScene.Equals ("Bus 2 Exterior 1") || SourceManager.oldScene.Equals ("Bus 2 Exterior 2")) {
+			image.sprite = Icon2;
 		}
+
+		SourceManager.oldScene = "Terminal";
 	}
 }

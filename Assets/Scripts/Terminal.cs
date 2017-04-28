@@ -18,7 +18,7 @@ public class Terminal : MonoBehaviour {
 	public string pauseCommand;
 	public string helpCommand;
 
-	private static string text = ">>> ";
+	private static string text = "Type 'help' for assistance :)";
 	private Text pastText;
 	private InputField inputField;
 	private GameObject screen;
@@ -49,6 +49,8 @@ public class Terminal : MonoBehaviour {
 			numFiles = Filesystem.files.Length;
 			pastTextStartingPos = pastText.transform.position;
 			inputStartingPos = inputField.transform.position;
+			NewLine ();
+			pastText.text = string.Concat (pastText.text, ">>> ");
 		}
 		ReFocus ();
 		hasLoaded = true;
@@ -93,7 +95,7 @@ public class Terminal : MonoBehaviour {
 							if (Filesystem.canEdit [i]) {
 								if (filename.Equals ("Tools.cs")) {
 									SceneManager.LoadScene ("Tools");
-								} else if (filename.Equals ("Walrus.cs")) {
+								} else if (filename.Equals ("GarbageCollector.cs")) {
 									SceneManager.LoadScene ("Garbage Collector");
 								} else {
 									pastText.text = string.Concat (pastText.text, inputField.text);
@@ -154,7 +156,7 @@ public class Terminal : MonoBehaviour {
 									//SwitchWorlds.physical = false;
 									Filesystem.canRun [0] = false;
 									SourceManager.oldScene = SceneManager.GetActiveScene ().name;
-									SceneManager.LoadScene ("Bus Station");
+									SceneManager.LoadScene ("Bus Station 1");
 									isRunningProgram = true;
 								} else if (filename.Equals ("Anti-virus.exe")) {
 									RabbitDialogue.Advance ();

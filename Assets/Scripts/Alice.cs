@@ -65,6 +65,7 @@ public class Alice : MonoBehaviour {
 		//RandomFiles.HideFiles ();
 		Mail.Activate ();
 		BusStation.busIsFixed = true;
+		Tunnel.shouldBeOnFire = false;
 	}
 		
 }

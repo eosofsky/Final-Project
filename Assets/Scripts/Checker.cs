@@ -26,6 +26,7 @@ public class Checker : MonoBehaviour {
 			Back back = GetComponent<Back> ();
 			back.GoBack ();
 			AliceDialogue.Advance ();
+			Tunnel.shouldBeOnFire = true;
 		}
 	}
 }

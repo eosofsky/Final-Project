@@ -10,10 +10,12 @@ public class AliceMovement : MonoBehaviour {
 	public static Vector3 position;
 
 	private CharacterController characterController;
+	private Animator anim;
 	private static bool enabled;
 
 	void Awake () {
 		characterController = GetComponent<CharacterController> ();
+		anim = GetComponent<Animator> ();
 		enabled = true;
 		if (hasStarted) {
 			gameObject.transform.position = position;
@@ -37,7 +39,17 @@ public class AliceMovement : MonoBehaviour {
 	}
 
 	void Move () {
-		Vector3 movement = new Vector3 (speed * Input.GetAxis ("Horizontal"), speed * Input.GetAxis ("Vertical"), 0.0f);
+		float h = Input.GetAxis ("Horizontal");
+		float v = Input.GetAxis ("Vertical");
+		/*if (h < 0.0f && anim) {
+			anim.SetBool ("GoingLeft", true);
+		} else if (h > 0.0f && anim) {
+			anim.SetBool ("GoingRight", true);
+		} else if (anim) {
+			anim.SetBool ("GoingLeft", false);
+			anim.SetBool ("GoingRight", false);
+		}*/
+		Vector3 movement = new Vector3 (speed * h, speed * v, 0.0f);
 		characterController.Move (movement);
 	}
 

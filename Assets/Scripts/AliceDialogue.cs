@@ -83,7 +83,7 @@ public class AliceDialogue : MonoBehaviour {
 	public static void AliceDialogue4 () {
 		string[] lines = { "Something must be wrong with its code.."};
 		GameObject Alice = GameObject.Find ("Alice");
-		Filesystem.canEdit [Filesystem.GetIndexFromFilename ("Walrus.cs")] = true;
+		Filesystem.canEdit [Filesystem.GetIndexFromFilename ("GarbageCollector.cs")] = true;
 		Speech.Instance.Speak (lines, Alice.transform, 200.0f, null);
 	}
 

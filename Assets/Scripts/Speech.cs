@@ -51,6 +51,10 @@ public class Speech : MonoBehaviour {
 		Doorway.canPass = false;
 		OpenTerminal.canOpen = false;
 		OpenBusUI.canOpen = false;
+		GameObject pc = GameObject.Find ("Personal Computer");
+		if (pc && character != pc.transform) {
+			PersonalComputer.canOpen = false;
+		}
 		currentDialogue = dialogue;
 		currentDialogueIndex = 0;
 		currentCharacter = character;
@@ -78,6 +82,7 @@ public class Speech : MonoBehaviour {
 		Doorway.canPass = true;
 		OpenTerminal.canOpen = true;
 		OpenBusUI.canOpen = true;
+		PersonalComputer.canOpen = true;
 		if (callback != null) {
 			callback ();
 		}

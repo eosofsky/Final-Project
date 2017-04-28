@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class PersonalComputer : MonoBehaviour, Interactable {
 
+	public static bool canOpen = true;
+
 	private static bool hasStarted = false;
 
 	void Start () {
@@ -15,9 +17,11 @@ public class PersonalComputer : MonoBehaviour, Interactable {
 	}
 
 	public void Interact () {
-		Speech.Instance.StopSpeaking ();
-		hasStarted = true;
-		SceneManager.LoadScene ("Chat");
+		if (canOpen) {
+			Speech.Instance.StopSpeaking ();
+			hasStarted = true;
+			SceneManager.LoadScene ("Chat");
+		}
 	}
 
 	private void DisableTerminalAccess () {

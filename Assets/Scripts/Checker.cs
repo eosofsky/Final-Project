@@ -22,7 +22,7 @@ public class Checker : MonoBehaviour {
 		}
 
 		if (correct) {
-			Filesystem.canEdit [Filesystem.GetIndexFromFilename ("Walrus.cs")] = false;
+			Filesystem.canEdit [Filesystem.GetIndexFromFilename ("GarbageCollector.cs")] = false;
 			Back back = GetComponent<Back> ();
 			back.GoBack ();
 			AliceDialogue.Advance ();

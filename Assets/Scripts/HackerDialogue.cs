@@ -49,7 +49,7 @@ public class HackerDialogue : MonoBehaviour {
 
 	public static void HackerDialogue0 () {
 		GameObject Hacker = GameObject.Find ("Hacker");
-		string[] lines = {"This is outrageous!", "I've got all these important investments that\nI need to check on, and this train stops running.", "Wait till I get my hands on the punk that caused it!", "You there! Aren’t you the engineer?", "Do you know how important my investments are!\nI can’t believe you took so long to fix this mess."};
+		string[] lines = {"This is outrageous!", "I've got all these important investments that\nI need to check on, and this bus stops running.", "Wait till I get my hands on the punk that caused it!", "You there! Aren’t you the engineer?", "Do you know how important my investments are!\nI can’t believe you took so long to fix this mess."};
 		Speech.Instance.Speak (lines, Hacker.transform, 250.0f, AliceDialogue.Advance);
 	}
 

@@ -17,6 +17,8 @@ public class Terminal : MonoBehaviour {
 	public string runCommand;
 	public string pauseCommand;
 	public string helpCommand;
+	public GameObject sound1;
+	public GameObject sound2;
 
 	private static string text = ">>> ";
 	private Text pastText;
@@ -37,6 +39,8 @@ public class Terminal : MonoBehaviour {
 		pastText.text = text;
 		inputField = GetComponentInChildren<InputField> ();
 		screen = GameObject.Find ("Screen");
+		sound1 = GameObject.Find("SoundSystem1");
+		sound2 = GameObject.Find("SoundSystem2");
 	}
 
 	void Start () {
@@ -152,6 +156,8 @@ public class Terminal : MonoBehaviour {
 							if (Filesystem.canRun [i]) {
 								if (filename.Equals ("Alice.exe")) {
 									//SwitchWorlds.physical = false;
+									sound1.GetComponent<AudioSource>().volume = 0.0f;
+									sound2.GetComponent<AudioSource>().volume = 1.0f;
 									Filesystem.canRun [0] = false;
 									SourceManager.oldScene = SceneManager.GetActiveScene ().name;
 									SceneManager.LoadScene ("Bus Station");
@@ -180,6 +186,8 @@ public class Terminal : MonoBehaviour {
 				}
 			} else if (input.Equals (pauseCommand)) { 
 				if (isRunningProgram) {
+					sound1.GetComponent<AudioSource>().volume = 1.0f;
+					sound2.GetComponent<AudioSource>().volume = 0.0f;
 					Filesystem.canRun [0] = true;
 					SceneManager.LoadScene ("Hub");
 					SourceManager.oldScene = SceneManager.GetActiveScene ().name;

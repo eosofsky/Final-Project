@@ -33,7 +33,7 @@ public class Entry : MonoBehaviour {
 			break;
         case "Core Room":
             Alice.transform.position = positions[7];
-            break;
+                break;
 		default:
 			break;
 		}

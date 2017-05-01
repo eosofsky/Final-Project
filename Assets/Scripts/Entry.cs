@@ -9,7 +9,6 @@ public class Entry : MonoBehaviour {
 	void Start () {
 		GameObject Alice = GameObject.Find ("Alice");
 
-		Debug.Log (SourceManager.oldScene);
 		switch (SourceManager.oldScene) {
 		case "Terminal":
 			Alice.transform.position = positions [0];
@@ -36,7 +35,10 @@ public class Entry : MonoBehaviour {
 			break;
         case "Core Room":
             Alice.transform.position = positions[7];
-                break;
+            break;
+		case "Bus Terminal":
+			Alice.transform.position = positions[8];
+			break;
 		default:
 			break;
 		}

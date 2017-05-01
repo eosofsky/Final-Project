@@ -58,6 +58,7 @@ public class Teacup : MonoBehaviour, Interactable {
 			Destroy (gameObject.GetComponent<Collider> ());
 			if (first) {
 				HackerDialogue.Advance ();
+				Alice.hasHat = true;
 				first = false;
 			}
 

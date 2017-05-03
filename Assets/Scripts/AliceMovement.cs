@@ -41,14 +41,22 @@ public class AliceMovement : MonoBehaviour {
 	void Move () {
 		float h = Input.GetAxis ("Horizontal");
 		float v = Input.GetAxis ("Vertical");
-		/*if (h < 0.0f && anim) {
+		if (h < 0.0f && anim) {
 			anim.SetBool ("GoingLeft", true);
+			anim.SetBool ("GoingRight", false);
 		} else if (h > 0.0f && anim) {
 			anim.SetBool ("GoingRight", true);
+			anim.SetBool ("GoingLeft", false);
+		} else if (v > 0.0f && anim) {
+			anim.SetBool ("GoingRight", true);
+			anim.SetBool ("GoingLeft", false);
+		} else if (v < 0.0f && anim) {
+			anim.SetBool ("GoingLeft", true);
+			anim.SetBool ("GoingRight", false);
 		} else if (anim) {
 			anim.SetBool ("GoingLeft", false);
 			anim.SetBool ("GoingRight", false);
-		}*/
+		}
 		Vector3 movement = new Vector3 (speed * h, speed * v, 0.0f);
 		characterController.Move (movement);
 	}

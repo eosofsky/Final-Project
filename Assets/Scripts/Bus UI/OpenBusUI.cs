@@ -9,11 +9,22 @@ public class OpenBusUI : MonoBehaviour, Interactable {
 
 	public static bool canOpen = true;
 
-	public void Interact () {
-		if (canOpen) {
-			SceneManager.LoadScene ("Bus UI");
-		}
-	}
+    public void Interact()
+    {
+        if (canOpen)
+        {
+            PlayerEntry();
+            Debug.Log("activated");
+        }
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.E) && (sprite.activeSelf))
+        {
+            SceneManager.LoadScene("Bus UI");
+        }
+    }
 
     public void PlayerEntry()
     {

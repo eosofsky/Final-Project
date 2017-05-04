@@ -61,7 +61,16 @@ public class Alice : MonoBehaviour {
 		}
 	}
 
-	public static void ExtinguishFire () {
+    private void OnTriggerExit(Collider collider)
+    {
+        Interactable interactable = collider.gameObject.GetComponent<Interactable>();
+        if (interactable != null)
+        {
+            interactable.PlayerExit();
+        }
+    }
+
+    public static void ExtinguishFire () {
 		//RandomFiles.HideFiles ();
 		Mail.Activate ();
 		BusStation.busIsFixed = true;

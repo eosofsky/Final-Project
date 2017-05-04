@@ -27,4 +27,10 @@ public class Doorway : MonoBehaviour, Interactable {
 			AliceMovement.hasStarted = false;
 		}
 	}
+
+    public void PlayerEntry()
+    { }
+
+    public void PlayerExit()
+    { }
 }

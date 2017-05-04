@@ -5,10 +5,12 @@ using UnityEngine;
 public class SwitchHub : MonoBehaviour {
 
 	public static bool ignite = false;
+	public static bool hasIgnited = false;
 
 	void Awake () {
-		if (ignite) {
+		if (ignite && !hasIgnited) {
 			AliceDialogue.Advance ();
+			hasIgnited = true;
 		}
 	}
 

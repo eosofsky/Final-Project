@@ -25,7 +25,7 @@ public class Terminal : MonoBehaviour {
 	private InputField inputField;
 	private GameObject screen;
 	private static int lineCount = 0;
-	private float lineSize = 80.0f;
+	private float lineSize = 81.0f;
 	private static bool hasLoaded = false;
 	private static Vector3 inputStartingPos;
 	private static Vector3 inputPos; 
@@ -148,6 +148,7 @@ public class Terminal : MonoBehaviour {
 					pastText.text = string.Concat (pastText.text, "  ERROR: File not found");
 				}
 			} else if (input.Equals (quitCommand)) {
+				SourceManager.oldScene = "Terminal";
 				SceneManager.LoadScene (Filesystem.quitScene);
 			} else if (Regex.IsMatch (input, string.Concat (runCommand, "  *"))) {
 				string filename = input.Substring (runCommand.Length + 1);
@@ -161,6 +162,7 @@ public class Terminal : MonoBehaviour {
 									sound1.GetComponent<AudioSource>().volume = 0.0f;
 									sound2.GetComponent<AudioSource>().volume = 1.0f;
 									Filesystem.canRun [0] = false;
+									Filesystem.canEdit [Filesystem.GetIndexFromFilename ("Tools.cs")] = true;
 									SourceManager.oldScene = SceneManager.GetActiveScene ().name;
 									SceneManager.LoadScene ("Bus Station 1");
 									isRunningProgram = true;
@@ -191,6 +193,7 @@ public class Terminal : MonoBehaviour {
 					sound1.GetComponent<AudioSource>().volume = 1.0f;
 					sound2.GetComponent<AudioSource>().volume = 0.0f;
 					Filesystem.canRun [0] = true;
+					Filesystem.canEdit [Filesystem.GetIndexFromFilename ("Tools.cs")] = false;
 					SceneManager.LoadScene ("Hub");
 					SourceManager.oldScene = SceneManager.GetActiveScene ().name;
 					isRunningProgram = false;

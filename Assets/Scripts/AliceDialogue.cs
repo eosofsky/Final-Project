@@ -4,8 +4,17 @@ using UnityEngine;
 
 public class AliceDialogue : MonoBehaviour {
 
+	public Sprite myIcon;
+
 	private static int step = -1;
 	private static bool stepStarted = false;
+	private static Sprite staticIcon;
+
+	private static string myName = "Alice";
+
+	void Awake () {
+		staticIcon = myIcon;
+	}
 
 	void Update () {
 		if (!stepStarted) {
@@ -57,64 +66,64 @@ public class AliceDialogue : MonoBehaviour {
 	}
 
 	public static void AliceDialogue0 () {
-		string[] lines = { "What on earth is happening!?", "I need to get inside a computer\nterminal and figure things out.. FAST."};
+		string[] lines = { "What on earth is happening!?", "I need to get to a computer\nterminal and figure things out...", "Maybe there's a program I can run\nto help me."};
 		GameObject Alice = GameObject.Find ("Alice");
-		Speech.Instance.Speak (lines, Alice.transform, 250.0f, null);
+		Speech.Instance.Speak (lines, "Alice", 250.0f, null, staticIcon);
 	}
 
 	public static void AliceDialogue1 () {
-		string[] lines = { "Ok. I’m currently in server A..", "I better start fixing things up soon,", "every second of downtime means lost revenue."};
+		string[] lines = { "Ok. I’m currently in server A.", "I better start fixing things up\nsoon!"};
 		GameObject Alice = GameObject.Find ("Alice");
-		Speech.Instance.Speak (lines, Alice.transform, 200.0f, CatDialogue.Advance);
+		Speech.Instance.Speak (lines, myName, 200.0f, CatDialogue.Advance, staticIcon);
 	}
 
 	public static void AliceDialogue2 () {
-		string[] lines = { "Don’t need you to tell me that!", "Where should I go?"};
+		string[] lines = { "I don’t need you to tell me that!", "Where should I go?"};
 		GameObject Alice = GameObject.Find ("Alice");
-		Speech.Instance.Speak (lines, Alice.transform, 200.0f, CatDialogue.Advance);
+		Speech.Instance.Speak (lines, myName, 200.0f, CatDialogue.Advance, staticIcon);
 	}
 
 	public static void AliceDialogue3 () {
-		string[] lines = { "This is the memory room of Server A...", "What a mess! The unused bad memory\nis overflowing everywhere."};
+		string[] lines = { "This is the memory room of Server\nA...", "What a mess! The ready-to-be-freed\nmemory is piling up."};
 		GameObject Alice = GameObject.Find ("Alice");
-		Speech.Instance.Speak (lines, Alice.transform, 200.0f, CatDialogue.Advance);
+		Speech.Instance.Speak (lines, myName, 200.0f, CatDialogue.Advance, staticIcon);
 	}
 
 	public static void AliceDialogue4 () {
-		string[] lines = { "Something must be wrong with its code.."};
+		string[] lines = { "Something must be wrong with his\ncode..."};
 		GameObject Alice = GameObject.Find ("Alice");
 		Filesystem.canEdit [Filesystem.GetIndexFromFilename ("GarbageCollector.cs")] = true;
-		Speech.Instance.Speak (lines, Alice.transform, 200.0f, null);
+		Speech.Instance.Speak (lines, myName, 200.0f, null, staticIcon);
 	}
 
 	public static void AliceDialogue5 () {
-		string[] lines = { "Great, now the garbage collector is doing what it needs to.", "Urg, I wonder what else the\nWhite Rabbit has messed up.", "I better stop him."};
+		string[] lines = { "Great, now the garbage collector is\ndoing what he needs to.", "Urg, I wonder what else the White\nRabbit has messed up."};
 		GameObject Alice = GameObject.Find ("Alice");
-		Speech.Instance.Speak (lines, Alice.transform, 200.0f, CatDialogue.Advance);
+		Speech.Instance.Speak (lines, myName, 200.0f, CatDialogue.Advance, staticIcon);
 	}
 
 	public static void AliceDialogue6 () {
-		string[] lines = { "There. That explains it.", "The ethernet cables connecting Server A to\nServer B has overheated and burnt down.", "How could this be?", "These wires are able to handle 50Gbits of\ntraffic per minute… Unless..", "someone has been transporting way more\ndata than that across the wire."};
+		string[] lines = { "There. That explains it.", "The cables connecting Server A to\nServer B has overheated and burnt down.", "How could this be?", "These wires are able to handle 50GB\nof traffic per minute...", "Unless someone has been transporting\nmore data than that across the wire."};
 		GameObject alice = GameObject.Find ("Alice");
-		Speech.Instance.Speak (lines, alice.transform, 200.0f, Alice.ExtinguishFire);
+		Speech.Instance.Speak (lines, myName, 200.0f, Alice.ExtinguishFire, staticIcon);
 	}
 
 	public static void AliceDialogue7 () {
-		string[] lines = {"It’s all the White Rabbit’s doing..", "I will stop him before he can wreck any more havoc."};
+		string[] lines = {"It’s all the White Rabbit’s doing.", "I will stop him before he can wreak\nany more havoc."};
 		GameObject alice = GameObject.Find ("Alice");
-		Speech.Instance.Speak (lines, alice.transform, 200.0f, HackerDialogue.Advance);
+		Speech.Instance.Speak (lines, myName, 200.0f, HackerDialogue.Advance, staticIcon);
 	}
 
 	public static void AliceDialogue8 () {
-		string[] lines = {"How would I be able to find those CORE FILES?"};
+		string[] lines = {"How would I be able to find those\nCORE FILES?"};
 		GameObject alice = GameObject.Find ("Alice");
-		Speech.Instance.Speak (lines, alice.transform, 200.0f, HackerDialogue.Advance);
+		Speech.Instance.Speak (lines, myName, 200.0f, HackerDialogue.Advance, staticIcon);
 	}
 
 	public static void AliceDialogue9 () {
-		string[] lines = {"Crap. My worst fears have been confirmed, White\nRabbit is stealing all of this data!", "I have to stop him with my virus removal tool!"};
+		string[] lines = {"Damn! White Rabbit is stealing\nall of this data!", "I have to stop him with my virus removal tool!"};
 		GameObject alice = GameObject.Find ("Alice");
-		Speech.Instance.Speak (lines, alice.transform, 200.0f, null);
+		Speech.Instance.Speak (lines, myName, 200.0f, null, staticIcon);
 	}
 
 	public static void Advance () {

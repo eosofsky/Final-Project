@@ -11,21 +11,31 @@ public class Speech : MonoBehaviour {
 	public float hPadding;
 	public float vPadding;
 
+	private Text name; 
 	private Text text;
+	private Text arrows;
+	private Image speakerIcon;
 	private Image image;
 	private bool waitingForDismiss;
 	private string[] currentDialogue;
+	private string currentSpeaker;
+	private Sprite currentIcon;
 	private int currentDialogueIndex;
-	private Transform currentCharacter;
 	private float offset;
 	private Callback callback;
 
 	void Awake () {
 		Instance = this;
-		text = GetComponentInChildren<Text> ();
+		name = GetComponentsInChildren<Text> ()[0];
+		name.enabled = false;
+		text = GetComponentsInChildren<Text> ()[1];
 		text.enabled = false;
-		image = GetComponentInChildren<Image> ();
+		arrows = GetComponentsInChildren<Text> ()[2];
+		arrows.enabled = false;
+		image = GetComponentsInChildren<Image> ()[0];
 		image.enabled = false;
+		speakerIcon = GetComponentsInChildren<Image> () [1];
+		speakerIcon.enabled = false;
 		waitingForDismiss = false;
 	}
 
@@ -40,24 +50,25 @@ public class Speech : MonoBehaviour {
 				}
 			}
 
-			text.transform.position = Camera.main.WorldToScreenPoint (currentCharacter.position) + new Vector3 (0.0f, offset, 0.0f);
-			image.transform.position = text.transform.position;
-			image.rectTransform.SetSizeWithCurrentAnchors (RectTransform.Axis.Horizontal, text.rectTransform.rect.width + hPadding);
-			image.rectTransform.SetSizeWithCurrentAnchors (RectTransform.Axis.Vertical, text.rectTransform.rect.height + vPadding);
+			//text.transform.position = Camera.main.WorldToScreenPoint (currentCharacter.position) + new Vector3 (0.0f, offset, 0.0f);
+			//image.transform.position = text.transform.position;
+			//image.rectTransform.SetSizeWithCurrentAnchors (RectTransform.Axis.Horizontal, text.rectTransform.rect.width + hPadding);
+			//image.rectTransform.SetSizeWithCurrentAnchors (RectTransform.Axis.Vertical, text.rectTransform.rect.height + vPadding);
 		}
 	}
 
-	public void Speak (string[] dialogue, Transform character, float newOffset, Callback myCallback) {
+	public void Speak (string[] dialogue, string character, float newOffset, Callback myCallback, Sprite icon) {
 		Doorway.canPass = false;
 		OpenTerminal.canOpen = false;
 		OpenBusUI.canOpen = false;
 		GameObject pc = GameObject.Find ("Personal Computer");
-		if (pc && character != pc.transform) {
-			PersonalComputer.canOpen = false;
-		}
+		//if (pc && character != pc.transform) {
+		PersonalComputer.canOpen = false;
+		//}
 		currentDialogue = dialogue;
 		currentDialogueIndex = 0;
-		currentCharacter = character;
+		currentSpeaker = character;
+		currentIcon = icon;
 		offset = newOffset;
 		callback = myCallback;
 		//AliceMovement.DisableMovement ();
@@ -65,19 +76,27 @@ public class Speech : MonoBehaviour {
 	}
 
 	private void SpeakLine () {
+		name.text = currentSpeaker + ":";
+		name.enabled = true;
 		text.text = currentDialogue[currentDialogueIndex];
-		text.transform.position = Camera.main.WorldToScreenPoint (currentCharacter.position) + new Vector3 (0.0f, offset, 0.0f);
+		//text.transform.position = Camera.main.WorldToScreenPoint (/*currentCharacter.position*/) + new Vector3 (0.0f, offset, 0.0f);
 		text.enabled = true;
-		image.transform.position = text.transform.position;
-		image.rectTransform.SetSizeWithCurrentAnchors (RectTransform.Axis.Horizontal, text.rectTransform.rect.width + hPadding);
-		image.rectTransform.SetSizeWithCurrentAnchors (RectTransform.Axis.Vertical, text.rectTransform.rect.height + vPadding);
+		//image.transform.position = text.transform.position;
+		//image.rectTransform.SetSizeWithCurrentAnchors (RectTransform.Axis.Horizontal, text.rectTransform.rect.width + hPadding);
+		//image.rectTransform.SetSizeWithCurrentAnchors (RectTransform.Axis.Vertical, text.rectTransform.rect.height + vPadding);
 		image.enabled = true;
+		arrows.enabled = true;
+		speakerIcon.sprite = currentIcon;
+		speakerIcon.enabled = true;
 		waitingForDismiss = true;
 	}
 
 	public void StopSpeaking () {
+		name.enabled = false;
 		text.enabled = false;
 		image.enabled = false;
+		speakerIcon.enabled = false;
+		arrows.enabled = false;
 		waitingForDismiss = false;
 		Doorway.canPass = true;
 		OpenTerminal.canOpen = true;

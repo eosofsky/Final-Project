@@ -5,7 +5,7 @@ using UnityEngine;
 public class Alice : MonoBehaviour {
 
 	public static bool hasHammer = false;
-	public static bool hasHat;
+	public static bool hasHat = false;
     public static bool hatActive = false;
 	public Sprite digitalAlice;
 	public Sprite physicalAlice;
@@ -15,12 +15,20 @@ public class Alice : MonoBehaviour {
 	private static Sprite myDigitalAlice;
 	private static Sprite myPhysicalAlice;
 	private bool hasMoved;
+	private static bool isphysical;
+
+	private static Animator anim;
 
 	void Awake () {
 		spriteRender = GetComponent<SpriteRenderer> ();
 		myDigitalAlice = digitalAlice;
 		myPhysicalAlice = physicalAlice;
 		hasMoved = false;
+		anim = GetComponent<Animator> ();
+		if (hatActive && !physical && anim) {
+			anim.SetBool ("HasHat", true);
+		}
+		isphysical = physical;
 	}
 
 	void Start () {
@@ -33,10 +41,22 @@ public class Alice : MonoBehaviour {
 			hasMoved = true;
 		}
 
-        if (Input.GetKeyDown(KeyCode.H))
+		if (Input.GetKeyDown(KeyCode.H) && hasHat && !hatActive && !physical)
         {
+			Debug.Log ("Activating hat");
             hatActive = true;
+			if (anim) {
+				anim.SetBool ("HasHat", true);
+			}
         }
+	}
+
+	public static void RemoveHat () {
+		Debug.Log ("Deactivating hat");
+		hatActive = false;
+		if (!isphysical && anim) {
+			anim.SetBool ("HasHat", false);
+		}
 	}
 
 	void OnControllerColliderHit (ControllerColliderHit hit) {

@@ -23,6 +23,7 @@ public class Chat : MonoBehaviour {
 
 	void Awake () {
 		pastText = GameObject.Find ("Past Text").GetComponent<Text> ();
+		pastText.supportRichText = true;
 		pastText.text = text;
 		inputField = GetComponentInChildren<InputField> ();
 		window = GameObject.Find ("Chat Window");
@@ -43,7 +44,7 @@ public class Chat : MonoBehaviour {
 	void Update () {
 		if (Input.GetKeyDown (KeyCode.Return) && canType) {
 			string userInput = inputField.text;
-			pastText.text = string.Concat (pastText.text, "You: ", userInput);
+			pastText.text = string.Concat (pastText.text, "<color=blue><b>You: </b></color>", "<color=blue>" + userInput + "</color>");
 			NewLine ();
 			canType = false;
 			step++;
@@ -101,11 +102,15 @@ public class Chat : MonoBehaviour {
 
 	private void WhiteRabbitSpeak (string text, bool withName) {
 		if (withName) {
-			pastText.text = string.Concat (pastText.text, "White Rabbit: ", text);
+			pastText.text = string.Concat (pastText.text, "<color=red><b>White Rabbit:</b> </color>", "<color=red>" + text + "</color>");
 		} else {
-			pastText.text = string.Concat (pastText.text, "          ", text);
+			pastText.text = string.Concat (pastText.text, "  ", "<color=red>" + text + "</color>");
 		}
-		NewLine ();
+		pastText.text = string.Concat (pastText.text, "\n");
+		lineCount++;
+		if (lineCount >= maxLineCount) {
+			Scroll ();
+		}
 	}
 
 	IEnumerator WhiteRabbit0 () {
@@ -123,10 +128,9 @@ public class Chat : MonoBehaviour {
 	IEnumerator WhiteRabbit1 () {
 		canType = false;
 		yield return new WaitForSeconds (delay);
-		WhiteRabbitSpeak ("Well, if you will excuse", true);
-		WhiteRabbitSpeak ("me,", false);
-		yield return new WaitForSeconds (delay);
-		WhiteRabbitSpeak ("I’ve got some work to do.", false);
+		WhiteRabbitSpeak ("Well, if you will", true);
+		WhiteRabbitSpeak ("excuse me, I've got some", false);
+		WhiteRabbitSpeak ("work to do.", false);
 		yield return new WaitForSeconds (1.5f*delay);
 		WhiteRabbitSpeak ("Lots of money to be", false);
 		WhiteRabbitSpeak ("made today with all these", false);
@@ -139,8 +143,8 @@ public class Chat : MonoBehaviour {
 	IEnumerator WhiteRabbit2 () {
 		canType = false;
 		yield return new WaitForSeconds (delay);
-		WhiteRabbitSpeak ("This is an automated", true);
-		WhiteRabbitSpeak ("reply.", false);
+		WhiteRabbitSpeak ("This is an", true);
+		WhiteRabbitSpeak ("automated reply.", false);
 		yield return new WaitForSeconds (delay);
 		WhiteRabbitSpeak ("I'm sorry, I can't come to", false);
 		WhiteRabbitSpeak ("the keyboard right now because", false);
@@ -156,15 +160,16 @@ public class Chat : MonoBehaviour {
 	IEnumerator WhiteRabbit3 () {
 		canType = false;
 		yield return new WaitForSeconds (delay);
-		WhiteRabbitSpeak ("Time is of the essence,", true);
-		WhiteRabbitSpeak ("I can't talk much; bye bye!", false);
+		WhiteRabbitSpeak ("Time is of the", true);
+		WhiteRabbitSpeak ("essence. I can't talk", false);
+		WhiteRabbitSpeak ("much. Bye bye!", false);
 		yield return new WaitForSeconds (delay);
 		WhiteRabbitSpeak ("I can't think of how to", false);
-		WhiteRabbitSpeak ("thank you enough! You can", false);
-		WhiteRabbitSpeak ("try to trace me down, but", false);
+		WhiteRabbitSpeak ("thank you enough! You can try", false);
+		WhiteRabbitSpeak ("to trace me down, but you", false);
 		yield return new WaitForSeconds (delay);
-		WhiteRabbitSpeak ("you couldn't find me even", false);
-		WhiteRabbitSpeak ("if you tried!", false);
+		WhiteRabbitSpeak ("couldn't find me even if", false);
+		WhiteRabbitSpeak ("you tried!", false);
 		canType = true;
 		lookingForSecretResponse = true;
 		CloseChat.Enable ();
@@ -174,7 +179,8 @@ public class Chat : MonoBehaviour {
 	IEnumerator WhiteRabbit4 () {
 		canType = false;
 		yield return new WaitForSeconds (delay);
-		WhiteRabbitSpeak ("Lololol fuck u l0s3r", true);
+		WhiteRabbitSpeak ("Lololol fuck u", true);
+		WhiteRabbitSpeak ("l0s3r", false);
 		canType = true;
 	}
 }

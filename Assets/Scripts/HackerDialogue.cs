@@ -4,11 +4,19 @@ using UnityEngine;
 
 public class HackerDialogue : MonoBehaviour {
 
+	public Sprite myIcon;
+
 	private static int step = -1;
 	private static bool stepStarted = false;
+	private static string myName = "Mad Hacker";
+	private static Sprite staticIcon;
 	//private static bool isTiming = false;
 	//private static float time = 0.0f;
 	//private static float delay = 5.0f;
+
+	void Awaker () {
+		staticIcon = myIcon;
+	}
 
 	void Update () {
 		if (!stepStarted) {
@@ -49,32 +57,37 @@ public class HackerDialogue : MonoBehaviour {
 
 	public static void HackerDialogue0 () {
 		GameObject Hacker = GameObject.Find ("Hacker");
-		string[] lines = {"This is outrageous!", "I've got all these important investments that\nI need to check on, and this bus stops running.", "Wait till I get my hands on the punk that caused it!", "You there! Aren’t you the engineer?", "Do you know how important my investments are!\nI can’t believe you took so long to fix this mess."};
-		Speech.Instance.Speak (lines, Hacker.transform, 250.0f, AliceDialogue.Advance);
+		string[] lines = {"This is outrageous!", "I've got all these important\ninvestments, and this bus stops running.", "Wait till I get my hands on the\npunk that caused it!", "You there! Aren’t you the engineer?", "I can’t believe you took so long to\nfix this mess."};
+		Speech.Instance.Speak (lines, myName, 250.0f, AliceDialogue.Advance, staticIcon);
 	}
 
 	public static void HackerDialogue1 () {
 		GameObject Hacker = GameObject.Find ("Hacker");
-		string[] lines = {"That pesky virus??", "You need to do much better than\nthis if you want to stop him!", "Catching him is not enough. As ALL skilled hackers know,\na smart virus would distribute its CORE FILES over several servers,\nso even if you destroyed its main body,\nhe could simply regenerate himself from the CORE FILES."};
-		Speech.Instance.Speak (lines, Hacker.transform, 250.0f, AliceDialogue.Advance);
+		string[] lines = {"That pesky virus??", "You need to do much better than\nthis if you want to stop him!", "Catching him is not enough.", "ALL skilled hackers know...", "a smart virus would distribute\nits CORE FILES over several servers.", "Even if you destroyed its main body,", "he could simply regenerate himself\nfrom the CORE FILES."};
+		Speech.Instance.Speak (lines, myName, 250.0f, AliceDialogue.Advance, staticIcon);
 	}
 
 	public static void HackerDialogue2 () {
 		GameObject Hacker = GameObject.Find ("Hacker");
-		string[] lines = {"He probably has them hidden in secure, hidden places.", "Of course I know how to reach them.. But I’m not obligated to\ntell you. I don’t even like engineers anyway."};
-		Speech.Instance.Speak (lines, Hacker.transform, 250.0f, null);
+		string[] lines = {"He probably has them hidden in\nsecure, hidden places.", "Of course I know how to reach them...\nBut I’m not obligated to tell you."};
+		Speech.Instance.Speak (lines, myName, 250.0f, null, staticIcon);
 	}
 
 	public static void HackerDialogue3 () {
 		GameObject Hacker = GameObject.Find ("Hacker");
-		string[] lines = {"You know what, I would rather you got rid of that\nfurball quick, so I will give you my special hat."};
-		Speech.Instance.Speak (lines, Hacker.transform, 250.0f, Advance);
+		string[] lines = {"You know what, I would rather you got\nrid of that furball quick,", "so I will give you my special hat."};
+		Speech.Instance.Speak (lines, myName, 250.0f, Advance, staticIcon);
 	}
 
 	public static void HackerDialogue4 () {
 		GameObject Hacker = GameObject.Find ("Hacker");
-		string[] lines = {"Wearing it gives you special privileges. It allows\nyou to see hidden memory/files\nand bypass any obstructions and security.", "Press H to wear Hat and enter privileged mode"};
-		Speech.Instance.Speak (lines, Hacker.transform, 250.0f, null);
+		string[] lines = {"Wearing it gives you special\nprivileges.", "It allows you to see hidden files\nand bypass obstruction..", "Press H to wear Hat and enter\nprivileged mode."};
+		Debug.Log ("Giving hat");
+		Speech.Instance.Speak (lines, myName, 250.0f, GiveHat, staticIcon);
+	}
+
+	public static void GiveHat () {
+		Alice.hasHat = true;
 	}
 
 	public static void Advance () {

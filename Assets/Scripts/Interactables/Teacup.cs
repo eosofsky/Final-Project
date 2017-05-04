@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Teacup : MonoBehaviour, Interactable {
 
+    public GameObject sprite;
+
 	public Sprite intactSprite;
 	public Sprite brokenSprite;
     public Vector3[] positions;
@@ -64,4 +66,14 @@ public class Teacup : MonoBehaviour, Interactable {
 
 		}
 	}
+
+    public void PlayerEntry()
+    {
+        sprite.SetActive(true);
+    }
+
+    public void PlayerExit()
+    {
+        sprite.SetActive(false);
+    }
 }

@@ -217,9 +217,13 @@ public class Terminal : MonoBehaviour {
 				NewLine ();
 				pastText.text = string.Concat (pastText.text, runCommand, " <filename> - Runs an executable");
 				NewLine ();
-				pastText.text = string.Concat (pastText.text, pauseCommand, " - pauses execution of running program");
+				pastText.text = string.Concat (pastText.text, pauseCommand, " - pauses execution of running");
 				NewLine ();
-				pastText.text = string.Concat (pastText.text, helpCommand, " - I betcha can figure this one out on your own ;)");
+				pastText.text = string.Concat (pastText.text, "        program");
+				NewLine ();
+				pastText.text = string.Concat (pastText.text, helpCommand, " - I betcha can figure this one");
+				NewLine ();
+				pastText.text = string.Concat (pastText.text, "       out on your own ;)");
 			} else if (input.Equals ("")) {
 			} else {
 				pastText.text = string.Concat (pastText.text, inputField.text);

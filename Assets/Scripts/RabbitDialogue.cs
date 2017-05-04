@@ -10,6 +10,7 @@ public class RabbitDialogue : MonoBehaviour {
 	private static bool stepStarted = false;
 	private static string myName = "White Rabbit";
 	private static Sprite staticIcon;
+	private static bool AliceSpoke = false;
 
 	void Awake () {
 		staticIcon = myIcon;
@@ -35,24 +36,38 @@ public class RabbitDialogue : MonoBehaviour {
 	public static void RabbitDialogue0 () {
 		GameObject Rabbit = GameObject.Find ("Rabbit");
 		string[] lines = { "So you found me trolololol!!!\nSo what? It’s too late to stop me now! "};
-		Speech.Instance.Speak (lines, myName, 250.0f, AliceDialogue.Advance, staticIcon);
+		Speech.Instance.Speak (lines, myName, 250.0f, AliceOrRabbitAdvance, staticIcon);
 	}
 
 	public static void RabbitDialogue1 () {
 		GameObject Rabbit = GameObject.Find ("Rabbit");
-		// if (core files not destroyed) {
-		string[] lines = {
-			"Trololololo!!! What a complete amateur you are!", "Everyone knows that a good hacker would\nkeep multiple backups of his CORE files!",
-			"You’ll never be able to take me down!!"
-		};
-		Speech.Instance.Speak (lines, myName, 250.0f, null, staticIcon);
-		//} else {
-			//string[] lines = {
-				//"Trololololo!!! What a complete amateur you are!", "Everyone knows that a good\nhacker would keep multiple backups of his CORE files!",
-				//"Wait.. No! IT CAN’T BE! YOU DESTROYED MY CORE FILES.. NO NO NOOOO!!!?"
-			//};
-			//Speech.Instance.Speak (lines, Rabbit.transform, 250.0f, End game);
-		//}
+		if (Alice.numCoreFiles < 2) {
+			string[] lines = {
+				"Trololololo!!! What a complete amateur you are!", "Everyone knows that a good hacker would\nkeep multiple backups of his CORE files!",
+				"You’ll never be able to take me down!!"
+			};
+			Speech.Instance.Speak (lines, myName, 250.0f, null, staticIcon);
+		} else {
+			string[] lines = {
+				"Trololololo!!! What a complete amateur you are!", "Everyone knows that a good\nhacker would keep multiple backups of his CORE files!",
+				"Wait.. No! IT CAN’T BE! YOU DESTROYED MY CORE FILES.. NO NO NOOOO!!!?"
+			};
+			Speech.Instance.Speak (lines, myName, 250.0f, null/*end game*/, staticIcon);
+		}
+	}
+
+	private static void AliceOrRabbitAdvance () {
+		if (AliceSpoke) {
+			Advance ();
+		} else {
+			AliceDialogue.Advance ();
+		}
+		AliceSpoke = true;
+	}
+
+	public static void Restart () {
+		step = -1;
+		stepStarted = false;
 	}
 
 	public static void Advance () {

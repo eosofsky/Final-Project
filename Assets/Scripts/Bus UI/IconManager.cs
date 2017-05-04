@@ -17,5 +17,11 @@ public class IconManager : MonoBehaviour {
 			Image image = GameObject.Find ("Bus UI 2").GetComponent<Image> ();
 			image.sprite = Icon2;
 		}
+
+		if (!Alice.hatActive) {
+			GameObject button3 = GameObject.Find ("Bus UI 3");
+			button3.GetComponentInChildren<Button> ().onClick = null;
+			button3.GetComponent<Image> ().enabled = false;
+		}
 	}
 }

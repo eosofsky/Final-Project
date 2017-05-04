@@ -14,13 +14,11 @@ public class Teacup : MonoBehaviour, Interactable {
     private Vector3 finish;
 	private SpriteRenderer spriteRenderer;
 	private bool broken;
-	private static bool first = true;
 
 	void Awake () {
 		spriteRenderer = GetComponent<SpriteRenderer> ();
 		spriteRenderer.sprite = intactSprite;
 		broken = false;
-        
         finish = positions[index];
 	}
 
@@ -55,15 +53,10 @@ public class Teacup : MonoBehaviour, Interactable {
 
     public void Interact () {
 		if (!broken && Alice.hasHammer) {
+			Alice.Hammer ();
 			spriteRenderer.sprite = brokenSprite;
 			broken = true;
 			Destroy (gameObject.GetComponent<Collider> ());
-			if (first) {
-				HackerDialogue.Advance ();
-				//Alice.hasHat = true;
-				first = false;
-			}
-
 		}
 	}
 

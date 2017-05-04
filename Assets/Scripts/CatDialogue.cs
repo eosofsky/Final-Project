@@ -7,7 +7,7 @@ public class CatDialogue : MonoBehaviour {
 	public Sprite myIcon;
 
 	private static int step = -1;
-	private static string myName = "Chesire Cat";
+	private static string myName = "Cheshire Cat";
 	private static bool stepStarted = false;
 	private static bool isTiming = false;
 	private static float time = 0.0f;
@@ -120,11 +120,16 @@ public class CatDialogue : MonoBehaviour {
 	}
 
 	public static void CatDialogue7 () {
-		GameObject Cat = GameObject.Find ("Cat");
-		SpriteRenderer render = Cat.gameObject.GetComponent<SpriteRenderer> ();
-		render.enabled = true;
-		string[] lines = {"Looks like you may need to go back\nto the software to fix this silverware!", "Maybe there are some tools you \ncan use?"};
-		Speech.Instance.Speak (lines, myName, 200.0f, Disappear, staticIcon);
+		if (!Alice.hasHammer) {
+			GameObject Cat = GameObject.Find ("Cat");
+			SpriteRenderer render = Cat.gameObject.GetComponent<SpriteRenderer> ();
+			render.enabled = true;
+			string[] lines = {
+				"Looks like you may need to go back\nto the software to fix this silverware!",
+				"Maybe there are some tools you \ncan use?"
+			};
+			Speech.Instance.Speak (lines, myName, 200.0f, Disappear, staticIcon);
+		}
 	}
 
 	private static void DisappearAndAdvanceAlice () {

@@ -10,12 +10,14 @@ public class HackerDialogue : MonoBehaviour {
 	private static bool stepStarted = false;
 	private static string myName = "Mad Hacker";
 	private static Sprite staticIcon;
+	private static Animator anim;
 	//private static bool isTiming = false;
 	//private static float time = 0.0f;
 	//private static float delay = 5.0f;
 
-	void Awaker () {
+	void Awake () {
 		staticIcon = myIcon;
+		anim = GetComponent<Animator> ();
 	}
 
 	void Update () {
@@ -87,6 +89,7 @@ public class HackerDialogue : MonoBehaviour {
 	}
 
 	public static void GiveHat () {
+		anim.SetTrigger ("Clone");
 		Alice.hasHat = true;
 	}
 

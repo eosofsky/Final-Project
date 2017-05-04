@@ -10,6 +10,9 @@ public class Alice : MonoBehaviour {
 	public Sprite digitalAlice;
 	public Sprite physicalAlice;
 	public bool physical;
+	public static int numCoreFiles = 0;
+	public static bool foundKey = false;
+	public static bool hasKey = false;
 
 	private static SpriteRenderer spriteRender;
 	private static Sprite myDigitalAlice;
@@ -56,6 +59,12 @@ public class Alice : MonoBehaviour {
 		hatActive = false;
 		if (!isphysical && anim) {
 			anim.SetBool ("HasHat", false);
+		}
+	}
+
+	public static void Hammer () {
+		if (anim) {
+			anim.SetTrigger ("Hammer");
 		}
 	}
 

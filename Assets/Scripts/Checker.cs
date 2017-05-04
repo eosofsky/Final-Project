@@ -8,7 +8,25 @@ public class Checker : MonoBehaviour {
 	public Dropdown[] dropdowns;
 	public int[] answers;
 
-	public void Check () {
+	private Text text;
+	private Button button;
+
+	void Awake () {
+		text = GetComponentInChildren<Text> ();
+		button = GetComponent<Button> ();
+	}
+
+	void Update () {
+		if (Check ()) {
+			button.interactable = true;
+			text.color = new Color (3.0f / 255.0f, 244.0f / 255.0f, 0.0f);
+		} else {
+			button.interactable = false;
+			text.color = new Color (131.0f / 255.0f, 131.0f / 255.0f, 131.0f / 255.0f);
+		}
+	}
+
+	private bool Check () {
 		bool correct = false;
 		/* Check first possible set of answers */
 		int i;
@@ -21,12 +39,6 @@ public class Checker : MonoBehaviour {
 			correct = true;
 		}
 
-		if (correct) {
-			Filesystem.canEdit [Filesystem.GetIndexFromFilename ("GarbageCollector.cs")] = false;
-			Back back = GetComponent<Back> ();
-			back.GoBack ();
-			AliceDialogue.Advance ();
-			Tunnel.shouldBeOnFire = true;
-		}
+		return correct;
 	}
 }

@@ -125,7 +125,7 @@ public class AliceDialogue : MonoBehaviour {
 		GameObject alice = GameObject.Find ("Alice");
 		Speech.Instance.Speak (lines, myName, 200.0f, null, staticIcon);
 	}
-
+		
 	public static void Advance () {
 		if (step < -1) {
 			step = -step;

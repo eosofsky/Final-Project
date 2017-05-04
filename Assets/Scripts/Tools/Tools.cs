@@ -5,16 +5,20 @@ using UnityEngine.UI;
 
 public class Tools : MonoBehaviour {
 
-	private Toggle flamingoToggle;
 	private Toggle hammerToggle;
-	private Toggle scissorToggle;
+	private Toggle keyToggle;
 
 	void Start () {
-		flamingoToggle = GameObject.Find ("flamingoToggle").GetComponent<Toggle> ();
 		hammerToggle = GameObject.Find ("hammerToggle").GetComponent<Toggle> ();
-		scissorToggle = GameObject.Find ("scissorsToggle").GetComponent<Toggle> ();
+		keyToggle = GameObject.Find ("keyToggle").GetComponent<Toggle> ();
 
 		hammerToggle.isOn = Alice.hasHammer;
+		keyToggle.isOn = Alice.hasKey;
+
+		if (Alice.foundKey) {
+			GameObject.Find ("Key Text").GetComponent<Text> ().color = new Color (3.0f / 255.0f, 244.0f / 255.0f, 0.0f);
+			keyToggle.interactable = true;
+		}
 	}
 
 	public void ToggleHammer () {
@@ -25,11 +29,11 @@ public class Tools : MonoBehaviour {
 		}
 	}
 
-	public void ToggleFlamingo () {
-		// TODO: Implement
-	}
-
-	public void ToggleScissors () {
-		// TODO: Implement
+	public void ToggleKey () {
+		if (keyToggle.isOn) {
+			Alice.hasKey = true;
+		} else {
+			Alice.hasKey = false;
+		}
 	}
 }

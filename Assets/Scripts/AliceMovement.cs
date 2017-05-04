@@ -30,12 +30,12 @@ public class AliceMovement : MonoBehaviour {
 	void Update () {
 		if (enabled) {
 			Move ();
-		}
 
-		/* Move camera to follow Alice */
-		Vector3 target = transform.position;
-		target.z = Camera.main.transform.position.z;
-		Camera.main.transform.position = Vector3.Lerp (Camera.main.transform.position, target, 1f);
+            /* Move camera to follow Alice */
+            Vector3 target = transform.position;
+            target.z = Camera.main.transform.position.z;
+            Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, target, 1f);
+        }
 	}
 
 	void Move () {

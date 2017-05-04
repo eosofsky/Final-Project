@@ -22,15 +22,25 @@ public class PersonalComputer : MonoBehaviour, Interactable {
 		}
 	}
 
-	public void Interact () {
-		if (canOpen) {
-			Speech.Instance.StopSpeaking ();
-			hasStarted = true;
-			SceneManager.LoadScene ("Chat");
-		}
-	}
+    public void Interact()
+    {
+        if (canOpen)
+        {
+            PlayerEntry();
+        }
+    }
 
-	private void DisableTerminalAccess () {
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.E) && (sprite.activeSelf))
+        {
+            Speech.Instance.StopSpeaking();
+            hasStarted = true;
+            SceneManager.LoadScene("Chat");
+        }
+    }
+
+    private void DisableTerminalAccess () {
 		OpenTerminal.canOpen = false;
 	}
 

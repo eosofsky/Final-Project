@@ -11,11 +11,21 @@ public class OpenTerminal : MonoBehaviour, Interactable {
 
 	public static bool canOpen = true;
 
-	public void Interact () {
-		if (canOpen) {
-			Filesystem.quitScene = quitScene;
-			SceneManager.LoadScene ("Terminal");
-		}
+    public void Interact()
+    {
+        if (canOpen)
+        {
+            PlayerEntry();
+        }
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.E) && (sprite.activeSelf))
+        {
+            Filesystem.quitScene = quitScene;
+            SceneManager.LoadScene("Terminal");
+        }
     }
 
     public void PlayerEntry()

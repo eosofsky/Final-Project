@@ -4,19 +4,10 @@ using UnityEngine;
 
 public class KernelTimer : MonoBehaviour {
 
-    private int numChildren;
-    private float time;
-    private float limit;
-    private bool timerStart;
-
-	// Use this for initialization
-	void Start () {
-        numChildren = transform.childCount;
-        timerStart = true;
-        limit = 10.0f;
-	}
+    private static float time = 0.0f;
+    private static float limit = 10.0f;
+    private static bool timerStart = true;
 	
-	// Update is called once per frame
 	void Update () {
 		if (Alice.hatActive && timerStart)
         {
@@ -33,17 +24,15 @@ public class KernelTimer : MonoBehaviour {
         {
             time = 0.0f;
             Toggle();
-            Alice.hatActive = false;
+			Alice.RemoveHat ();
             timerStart = true;
         }
 	}
 
-    void Toggle()
-    {
-        for (int c = 0; c < numChildren; c++)
-        {
-            var child = transform.GetChild(c);
-            child.gameObject.SetActive(!(child.gameObject.activeSelf));
+    void Toggle () {
+		GameObject[] kernelMem = GameObject.FindGameObjectsWithTag ("KernelWorld");
+		for (int c = 0; c < kernelMem.Length; c++) {
+			kernelMem[c].gameObject.SetActive(!(kernelMem[c].activeSelf));
         }
     }
 }

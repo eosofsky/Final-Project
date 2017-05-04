@@ -4,11 +4,19 @@ using UnityEngine;
 
 public class CatDialogue : MonoBehaviour {
 
+	public Sprite myIcon;
+
 	private static int step = -1;
+	private static string myName = "Chesire Cat";
 	private static bool stepStarted = false;
 	private static bool isTiming = false;
 	private static float time = 0.0f;
 	private static float delay = 5.0f;
+	private static Sprite staticIcon;
+
+	void Awake () {
+		staticIcon = myIcon;
+	}
 
 	void Update () {
 		if (!stepStarted) {
@@ -63,58 +71,60 @@ public class CatDialogue : MonoBehaviour {
 		GameObject Cat = GameObject.Find ("Cat");
 		SpriteRenderer render = Cat.gameObject.GetComponent<SpriteRenderer> ();
 		render.enabled = true;
-		string[] lines = { "Alice, what took you\nso long to get here!!", "We’ll all be screwed over if the\nWhite Rabbit gets what he wants!"};
-		Speech.Instance.Speak (lines, Cat.transform, 250.0f, AliceDialogue.Advance);
+		string[] lines = { "Alice, what took you so long to\nget here?!", "We’ll all be screwed over if the\nWhite Rabbit gets what he wants!"};
+		Speech.Instance.Speak (lines, myName, 250.0f, AliceDialogue.Advance, staticIcon);
 	}
 
 	public static void CatDialogue1 () {
 		GameObject Cat = GameObject.Find ("Cat");
 		string[] lines = { "Depends on where you want to end up!\nNot in this mess I hope..."};
-		Speech.Instance.Speak (lines, Cat.transform, 200.0f, Disappear);
+		Speech.Instance.Speak (lines, myName, 200.0f, Disappear, staticIcon);
 	}
 
 	public static void CatDialogue2 () {
 		GameObject Cat = GameObject.Find ("Cat");
 		SpriteRenderer render = Cat.gameObject.GetComponent<SpriteRenderer> ();
 		render.enabled = true;
-		string[] lines = { "Oh.. Looks like the White Rabbit\nreally messed things up here!", "Walrus the garbage collector is just\nnot doing his job properly anymore."};
-		Speech.Instance.Speak (lines, Cat.transform, 200.0f, /*StartTimer*/Advance);
+		string[] lines = { "Oh... Looks like the White Rabbit\nreally messed things up here!", "The garbage collector is just\nnot doing his job properly anymore.",  "The thing about memory, Alice, is\nthat it needs to be cleared when", "it is not being used anymore! Not\nwhen it is still in use!", "Clearly, the garbage collector is\nnot doing his job properly..."};
+		Speech.Instance.Speak (lines, myName, 200.0f, /*StartTimer*/Advance, staticIcon);
 	}
 
 	public static void CatDialogue3 () {
-		GameObject Cat = GameObject.Find ("Cat");
-		string[] lines = { "The thing about memory, Alice,", "is that it needs to be cleared when\nit is not being used anymore!\nNot when it is still in use!", "No wonder things are messing up."};
-		Speech.Instance.Speak (lines, Cat.transform, 200.0f, /*StartTimer*/Advance);
+		//GameObject Cat = GameObject.Find ("Cat");
+		//string[] lines = { "The thing about memory, Alice, is\nthat it needs to be cleared when", "it is not being used anymore! Not\nwhen it is still in use!"};
+		//Speech.Instance.Speak (lines, myName, 200.0f, /*StartTimer*/Advance, staticIcon);
+		Advance();
 	}
 
 	public static void CatDialogue4 () {
-		GameObject Cat = GameObject.Find ("Cat");
-		string[] lines = { "Clearly, the garbage collector is not doing his job properly.."};
-		Speech.Instance.Speak (lines, Cat.transform, 200.0f, DisappearAndAdvanceAlice);
+		//GameObject Cat = GameObject.Find ("Cat");
+		//string[] lines = { "Clearly, the garbage collector is\nnot doing his job properly.."};
+		//Speech.Instance.Speak (lines, myName, 200.0f, DisappearAndAdvanceAlice, staticIcon);
+		DisappearAndAdvanceAlice();
 	}
 
 	public static void CatDialogue5 () {
 		GameObject Cat = GameObject.Find ("Cat");
 		SpriteRenderer render = Cat.gameObject.GetComponent<SpriteRenderer> ();
 		render.enabled = true;
-		string[] lines = {"..And FAST! I’m sure that sleazy cottontail\nhas terrible things up his sleeve.", "You should probably head to Server B. Get a grip!!"};
-		Speech.Instance.Speak (lines, Cat.transform, 200.0f, DisappearAndFilesSpeak);
+		string[] lines = {"I’m sure that sleazy cottontail has\nterrible things up his sleeve.", "You should probably head to Server\nB. Get a grip!!"};
+		Speech.Instance.Speak (lines, myName, 200.0f, DisappearAndFilesSpeak, staticIcon);
 	}
 
 	public static void CatDialogue6 () {
 		GameObject Cat = GameObject.Find ("Cat");
 		SpriteRenderer render = Cat.gameObject.GetComponent<SpriteRenderer> ();
 		render.enabled = true;
-		string[] lines = {"A fire? Must be the White\nRabbit’s doing again!"};
-		Speech.Instance.Speak (lines, Cat.transform, 200.0f, IgniteAndDisappear);
+		string[] lines = {"A fire? Must be the White Rabbit’s\ndoing again!", "You probably can’t do anything\nhere...", "But in the world outside, maybe\nyou can..."};
+		Speech.Instance.Speak (lines, myName, 200.0f, IgniteAndDisappear, staticIcon);
 	}
 
 	public static void CatDialogue7 () {
 		GameObject Cat = GameObject.Find ("Cat");
 		SpriteRenderer render = Cat.gameObject.GetComponent<SpriteRenderer> ();
 		render.enabled = true;
-		string[] lines = {"Looks like you may need to go back\nto the software to fix this silverware!", "Maybe there're some tools you can use?"};
-		Speech.Instance.Speak (lines, Cat.transform, 200.0f, IgniteAndDisappear);
+		string[] lines = {"Looks like you may need to go back\nto the software to fix this silverware!", "Maybe there are some tools you \ncan use?"};
+		Speech.Instance.Speak (lines, myName, 200.0f, Disappear, staticIcon);
 	}
 
 	private static void DisappearAndAdvanceAlice () {

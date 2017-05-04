@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class CloseChat : MonoBehaviour {
 
@@ -14,6 +15,7 @@ public class CloseChat : MonoBehaviour {
 	}
 
 	public static void Enable () {
+		GameObject.Find ("X Text").GetComponent<Text> ().color = Color.white;
 		canClose = true;
 	}
 

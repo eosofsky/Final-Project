@@ -5,7 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class OpenTerminal : MonoBehaviour, Interactable {
 
-	public string quitScene;
+    public GameObject sprite;
+
+    public string quitScene;
 
 	public static bool canOpen = true;
 
@@ -14,5 +16,15 @@ public class OpenTerminal : MonoBehaviour, Interactable {
 			Filesystem.quitScene = quitScene;
 			SceneManager.LoadScene ("Terminal");
 		}
-	}
+    }
+
+    public void PlayerEntry()
+    {
+        sprite.SetActive(true);
+    }
+
+    public void PlayerExit()
+    {
+        sprite.SetActive(false);
+    }
 }

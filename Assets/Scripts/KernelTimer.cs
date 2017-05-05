@@ -1,15 +1,26 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class KernelTimer : MonoBehaviour {
 
     private static float time = 0.0f;
     private static float limit = 10.0f;
+    private static float watches = 20.0f;
     private static bool timerStart = true;
+    private static int watchIndex = 0;
 
-	void Awake () {
-		ShowKernelMem (Alice.hatActive);
+    private Image image;
+
+    private Sprite[] Stopwatches;
+
+
+	void Awake ()
+    {
+        Stopwatches = Resources.LoadAll<Sprite>("Stopwatch");
+        image = GetComponentInChildren<Image>();
+        ShowKernelMem (Alice.hatActive);
 	}
 
 	void Update () {
@@ -17,6 +28,7 @@ public class KernelTimer : MonoBehaviour {
             time = 0.0f;
             timerStart = false;
 			ShowKernelMem(true);
+            image.enabled = true;
         } else if (Alice.hatActive) {
             time += Time.deltaTime;
         }
@@ -24,13 +36,41 @@ public class KernelTimer : MonoBehaviour {
         if (time >= limit) {
 			ResetHat ();
         }
-	}
+        AnimStopwatch();
+    }
+
+    private Sprite FindFrame(string title)
+    {
+        foreach (var frame in Stopwatches)
+        {
+            if (frame.name.Equals(title))
+                return frame;
+        }
+        return Stopwatches[0];
+    }
+
+    private void AnimStopwatch()
+    {
+        var increment = limit / watches;
+        if (Alice.hatActive && time >= (increment*watchIndex))
+        {
+            if (watchIndex >= watches)
+            {
+                return;
+            }
+            var spriteName = string.Format("Frame {0}", watchIndex);
+            image.sprite = FindFrame(spriteName);
+            watchIndex++;
+        }
+    }
 
 	public void ResetHat () {
 		time = 0.0f;
-		ShowKernelMem(false);
+        watchIndex = 0;
+        ShowKernelMem(false);
 		Alice.RemoveHat ();
 		timerStart = true;
+        image.enabled = false;
 	}
 
 	private void ShowKernelMem (bool show) {

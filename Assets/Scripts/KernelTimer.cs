@@ -9,18 +9,17 @@ public class KernelTimer : MonoBehaviour {
     private static float limit = 10.0f;
     private static float watches = 20.0f;
     private static bool timerStart = true;
-    private static int watchIndex;
+    private static int watchIndex = 0;
 
     private Image image;
+
     private Sprite[] Stopwatches;
 
 
 	void Awake ()
     {
         Stopwatches = Resources.LoadAll<Sprite>("Stopwatch");
-        watchIndex = 0;
         image = GetComponentInChildren<Image>();
-        image.enabled = false;
         ShowKernelMem (Alice.hatActive);
 	}
 

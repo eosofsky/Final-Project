@@ -9,13 +9,21 @@ public class Key : MonoBehaviour, Interactable {
 	void Awake () {
 		if (Alice.foundKey) {
 			Destroy (gameObject);
+			Destroy (sprite);
+		}
+	}
+
+	void Update () {
+		if (sprite.activeSelf && Input.GetKeyDown (KeyCode.E)) {
+			Alice.foundKey = true;
+			Alice.hasKey = true;
+			Destroy (gameObject);
+			Destroy (sprite);
 		}
 	}
 
     public void Interact () {
-		Alice.foundKey = true;
-		Alice.hasKey = true;
-		Destroy (gameObject);
+		PlayerEntry ();
 	}
 
     public void PlayerEntry()

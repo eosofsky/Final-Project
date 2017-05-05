@@ -11,6 +11,7 @@ public class HackerDialogue : MonoBehaviour {
 	private static string myName = "Mad Hacker";
 	private static Sprite staticIcon;
 	private static Animator anim;
+	private static Hat hat;
 	//private static bool isTiming = false;
 	//private static float time = 0.0f;
 	//private static float delay = 5.0f;
@@ -18,6 +19,7 @@ public class HackerDialogue : MonoBehaviour {
 	void Awake () {
 		staticIcon = myIcon;
 		anim = GetComponent<Animator> ();
+		hat = GameObject.Find ("Hat").GetComponent<Hat> ();
 	}
 
 	void Update () {
@@ -84,13 +86,12 @@ public class HackerDialogue : MonoBehaviour {
 	public static void HackerDialogue4 () {
 		GameObject Hacker = GameObject.Find ("Hacker");
 		string[] lines = {"Wearing it gives you special\nprivileges.", "It allows you to see hidden files\nand bypass obstruction..", "Press H to wear Hat and enter\nprivileged mode."};
-		Debug.Log ("Giving hat");
 		Speech.Instance.Speak (lines, myName, 250.0f, GiveHat, staticIcon);
 	}
 
 	public static void GiveHat () {
 		anim.SetTrigger ("Clone");
-		Alice.hasHat = true;
+		hat.Activate ();
 	}
 
 	public static void Advance () {

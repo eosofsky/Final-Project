@@ -9,22 +9,29 @@ public class SwitchHub : MonoBehaviour, Interactable {
 	public static bool ignite = false;
 	public static bool hasIgnited = false;
 
+	private static SpriteRenderer sr;
+
 	void Awake () {
-		if (ignite && !hasIgnited) {
-			AliceDialogue.Advance ();
-			hasIgnited = true;
+		sr = GetComponent<SpriteRenderer> ();
+		if (ignite) {
+			if (!hasIgnited) {
+				AliceDialogue.Advance ();
+				hasIgnited = true;
+			}
+			sr.enabled = true;
 		}
 	}
 
 	public static void Ignite () {
 		ignite = true;
-		// Ignite
+		sr.enabled = true;
 	}
 
 	void Update () {
 		if (sprite.activeSelf && Input.GetKeyDown (KeyCode.E)) {
+			Alice.ExtinguishFire ();
 			ignite = false;
-			// Extinguish
+			sr.enabled = false;
 			Mail.Activate ();
 			BusStation.busIsFixed = true;
 			Tunnel.shouldBeOnFire = false;

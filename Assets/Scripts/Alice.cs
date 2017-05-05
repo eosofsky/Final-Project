@@ -100,11 +100,8 @@ public class Alice : MonoBehaviour {
         }
     }
 
-    //public static void ExtinguishFire () {
-		//RandomFiles.HideFiles ();
-	//	Mail.Activate ();
-	//	BusStation.busIsFixed = true;
-	//	Tunnel.shouldBeOnFire = false;
-	//}
+    public static void ExtinguishFire () {
+		anim.SetTrigger ("Extinguish");
+	}
 		
 }

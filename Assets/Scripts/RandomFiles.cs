@@ -8,16 +8,23 @@ public class RandomFiles : MonoBehaviour {
 
 	private static Sprite staticFileIcon;
 	private static Transform t;
+	private static bool shouldShow = false;
 
 	void Awake () {
 		staticFileIcon = fileIcon;
 		t = transform;
+		if (shouldShow) {
+			for (int i = 0; i < t.childCount; i++) {
+				t.GetChild (i).GetComponent<SpriteRenderer> ().enabled = true;
+			}
+		}
+	}
+
+	public static void ShowFiles () {
+		shouldShow = true;
 	}
 
 	public static void FilesSpeak () {
-		for (int i = 0; i < t.childCount; i++) {
-			t.GetChild (i).GetComponent<SpriteRenderer> ().enabled = true;
-		}
 		string[] lines = {"What on earth is happening?", "I have a shipment of Tweets headed\nfor Server C and now I’m stuck here!!"};
 		Speech.Instance.Speak (lines, "Twitterdrump", 115.0f, Next, staticFileIcon);
 	}

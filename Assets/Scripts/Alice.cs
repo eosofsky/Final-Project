@@ -7,6 +7,7 @@ public class Alice : MonoBehaviour {
 	public static bool hasHammer = false;
 	public static bool hasHat = false;
     public static bool hatActive = false;
+	public static bool foundExtinguisher = false;
 	public Sprite digitalAlice;
 	public Sprite physicalAlice;
 	public bool physical;
@@ -49,7 +50,7 @@ public class Alice : MonoBehaviour {
 			Debug.Log ("Activating hat");
             hatActive = true;
 			if (anim) {
-				anim.SetBool ("HasHat", true);
+				anim.SetTrigger ("WearHat");
 			}
         }
 	}
@@ -58,7 +59,7 @@ public class Alice : MonoBehaviour {
 		Debug.Log ("Deactivating hat");
 		hatActive = false;
 		if (!isphysical && anim) {
-			anim.SetBool ("HasHat", false);
+			anim.SetTrigger ("RemoveHat");
 		}
 	}
 
@@ -99,11 +100,11 @@ public class Alice : MonoBehaviour {
         }
     }
 
-    public static void ExtinguishFire () {
+    //public static void ExtinguishFire () {
 		//RandomFiles.HideFiles ();
-		Mail.Activate ();
-		BusStation.busIsFixed = true;
-		Tunnel.shouldBeOnFire = false;
-	}
+	//	Mail.Activate ();
+	//	BusStation.busIsFixed = true;
+	//	Tunnel.shouldBeOnFire = false;
+	//}
 		
 }

@@ -103,9 +103,10 @@ public class AliceDialogue : MonoBehaviour {
 	}
 
 	public static void AliceDialogue6 () {
+		SwitchHub.Ignite ();
 		string[] lines = { "There. That explains it.", "The cables connecting Server A to\nServer B has overheated and burnt down.", "How could this be?", "These wires are able to handle 50GB\nof traffic per minute...", "Unless someone has been transporting\nmore data than that across the wire."};
 		GameObject alice = GameObject.Find ("Alice");
-		Speech.Instance.Speak (lines, myName, 200.0f, Alice.ExtinguishFire, staticIcon);
+		Speech.Instance.Speak (lines, myName, 200.0f, null, staticIcon);
 	}
 
 	public static void AliceDialogue7 () {
@@ -121,7 +122,7 @@ public class AliceDialogue : MonoBehaviour {
 	}
 
 	public static void AliceDialogue9 () {
-		string[] lines = {"Damn! White Rabbit is stealing\nall of this data!", "I have to stop him with my virus removal tool!"};
+		string[] lines = {"Damn! White Rabbit is stealing\nall of this data!", "I have to stop him with my virus\nremoval software!"};
 		GameObject alice = GameObject.Find ("Alice");
 		Speech.Instance.Speak (lines, myName, 200.0f, null, staticIcon);
 	}

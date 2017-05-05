@@ -13,6 +13,7 @@ public class Entry : MonoBehaviour {
 		case "Terminal":
 			Alice.transform.position = positions [0];
 			break;
+		case "Personal Computer":
 		case "Bus Station":
 			Alice.transform.position = positions [1];
 			break;

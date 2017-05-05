@@ -19,6 +19,8 @@ public class Hat : MonoBehaviour, Interactable {
 		} else {
 			sr = GetComponent<SpriteRenderer> ();
 			collider = GetComponent<Collider> ();
+			sr.enabled = canCollect;
+			collider.enabled = canCollect;
 		}
 	}
 

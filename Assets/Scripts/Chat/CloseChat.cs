@@ -10,6 +10,7 @@ public class CloseChat : MonoBehaviour {
 
 	public void Close () {
 		if (canClose) {
+			SourceManager.oldScene = "Personal Computer";
 			SceneManager.LoadScene ("Hub");
 		}
 	}

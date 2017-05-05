@@ -30,7 +30,11 @@ public class Chat : MonoBehaviour {
 	}
 
 	void Start () {
-		CloseChat.Disable ();
+		if (step < 3) {
+			CloseChat.Disable ();
+		} else {
+			CloseChat.Enable ();
+		}
 		ReFocus ();
 		if (step < 0) {
 			step++;

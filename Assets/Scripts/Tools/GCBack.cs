@@ -10,6 +10,7 @@ public class GCBack : MonoBehaviour {
 		Carpenter.isFixed = true;
 		AliceDialogue.Advance ();
 		Tunnel.shouldBeOnFire = true;
+		RandomFiles.ShowFiles ();
 		SceneManager.LoadScene ("Terminal");
 	}
 }

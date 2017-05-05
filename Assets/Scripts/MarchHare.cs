@@ -21,7 +21,8 @@ public class MarchHare : MonoBehaviour, Interactable {
 			freed = true;
 			string[] lines = {
 				"Thanks for freeing me from that\ndeadlock, Alice!",
-				"The White Rabbit has really caused\na lot of damage around here!"
+				"The White Rabbit has really caused\na lot of damage around here!",
+				"Now go talk to the Mad\nHacker!"
 			};
 			Speech.Instance.Speak (lines, "March Hare", 0.0f, HackerDialogue.Advance, icon);
 		}

@@ -58,8 +58,8 @@ public class RabbitDialogue : MonoBehaviour {
 			Speech.Instance.Speak (lines, myName, 250.0f, AllowPass, staticIcon);
 		} else {
 			string[] lines = {
-				"Trololololo!!! What a complete amateur you are!", "Everyone knows that a good\nhacker would keep multiple backups of his CORE files!",
-				"Wait.. No! IT CAN’T BE! YOU DESTROYED MY CORE FILES.. NO NO NOOOO!!!?"
+				"Trololololo!!! What a complete amateur you are!", "Everyone knows that a good hacker", "would keep multiple backups of his\nCORE files!",
+				"Wait.. No! IT CAN’T BE! YOU DESTROYED\nMY CORE FILES.. NO NO NOOOO!!!?"
 			};
 			Speech.Instance.Speak (lines, myName, 250.0f, AllowPass/*end game*/, staticIcon);
 		}

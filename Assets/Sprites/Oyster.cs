@@ -13,13 +13,13 @@ public class Oyster : MonoBehaviour, Interactable {
 	private static bool defeated2 = false;
 
 	public void Interact () {
-		if (SceneManager.GetActiveScene ().Equals ("Core Room") && !defeated1 && Alice.hasHammer) {
+		if (SceneManager.GetActiveScene ().name.Equals ("Core Room") && !defeated1 && Alice.hasHammer) {
 			Alice.Hammer ();
 			defeated1 = true;
 			GoodOyster.gameObject.SetActive (false);
 			BadOyster.gameObject.SetActive (true);
 			Alice.numCoreFiles++;
-		} else if (SceneManager.GetActiveScene ().Equals ("Core Room 2")&& !defeated2 && Alice.hasHammer) {
+		} else if (SceneManager.GetActiveScene ().name.Equals ("Core Room 2")&& !defeated2 && Alice.hasHammer) {
 			Alice.Hammer ();
 			defeated2 = true;
 			GoodOyster.gameObject.SetActive (false);

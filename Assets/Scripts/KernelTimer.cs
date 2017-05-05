@@ -10,6 +10,7 @@ public class KernelTimer : MonoBehaviour {
     private static float watches = 20.0f;
     private static bool timerStart = true;
     private static int watchIndex = 0;
+    public GameObject tick;
 
     private Image image;
 
@@ -21,10 +22,12 @@ public class KernelTimer : MonoBehaviour {
         Stopwatches = Resources.LoadAll<Sprite>("Stopwatch");
         image = GetComponentInChildren<Image>();
         ShowKernelMem (Alice.hatActive);
+        tick = GameObject.Find("tick_tock");
 	}
 
 	void Update () {
 		if (Alice.hatActive && timerStart) {
+            tick.GetComponent<AudioSource>().volume = 1.0f;
             time = 0.0f;
             timerStart = false;
 			ShowKernelMem(true);
@@ -65,6 +68,7 @@ public class KernelTimer : MonoBehaviour {
     }
 
 	public void ResetHat () {
+        tick.GetComponent<AudioSource>().volume = 0.0f;
 		time = 0.0f;
         watchIndex = 0;
         ShowKernelMem(false);

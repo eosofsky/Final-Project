@@ -46,7 +46,7 @@ public class Hat : MonoBehaviour, Interactable {
 	}
 
 	IEnumerator activate () {
-		yield return new WaitForSeconds (0.5f);
+		yield return new WaitForSeconds (0.9f);
 		sr.enabled = true;
 		collider.enabled = true;
 		canCollect = true;

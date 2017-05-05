@@ -1,0 +1,545 @@
+fileFormatVersion: 2
+guid: f5e53a929ac114450bed628cc2badac2
+timeCreated: 1493945610
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Alice_Physmove_Left_0
+    21300002: Alice_Physmove_Left_1
+    21300004: Alice_Physmove_Left_2
+    21300006: Alice_Physmove_Left_3
+    21300008: Alice_Physmove_Left_4
+    21300010: Alice_Physmove_Left_5
+    21300012: Alice_Physmove_Left_6
+    21300014: Alice_Physmove_Left_7
+    21300016: Alice_Physmove_Left_8
+    21300018: Alice_Physmove_Left_9
+    21300020: Alice_Physmove_Left_10
+    21300022: Alice_Physmove_Left_11
+    21300024: Alice_Physmove_Left_12
+    21300026: Alice_Physmove_Left_13
+    21300028: Alice_Physmove_Left_14
+    21300030: Alice_Physmove_Left_15
+    21300032: Alice_Physmove_Left_16
+    21300034: Alice_Physmove_Left_17
+    21300036: Alice_Physmove_Left_18
+    21300038: Alice_Physmove_Left_19
+    21300040: Alice_Physmove_Left_20
+    21300042: Alice_Physmove_Left_21
+    21300044: Alice_Physmove_Left_22
+    21300046: Alice_Physmove_Left_23
+    21300048: Alice_Physmove_Left_24
+    21300050: Alice_Physmove_Left_25
+    21300052: Alice_Physmove_Left_26
+    21300054: Alice_Physmove_Left_27
+    21300056: Alice_Physmove_Left_28
+    21300058: Alice_Physmove_Left_29
+    21300060: Alice_Physmove_Left_30
+    21300062: Alice_Physmove_Left_31
+    21300064: Alice_Physmove_Left_32
+    21300066: Alice_Physmove_Left_33
+    21300068: Alice_Physmove_Left_34
+    21300070: Alice_Physmove_Left_35
+    21300072: Alice_Physmove_Left_36
+    21300074: Alice_Physmove_Left_37
+    21300076: Alice_Physmove_Left_38
+    21300078: Alice_Physmove_Left_39
+    21300080: Alice_Physmove_Left_40
+    21300082: Alice_Physmove_Left_41
+    21300084: Alice_Physmove_Left_42
+    21300086: Alice_Physmove_Left_43
+    21300088: Alice_Physmove_Left_44
+    21300090: Alice_Physmove_Left_45
+    21300092: Alice_Physmove_Left_46
+    21300094: Alice_Physmove_Left_47
+    21300096: Alice_Physmove_Left_48
+    21300098: Alice_Physmove_Left_49
+    21300100: Alice_Physmove_Left_50
+    21300102: Alice_Physmove_Left_51
+    21300104: Alice_Physmove_Left_52
+  serializedVersion: 4
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: -1
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Standalone
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Alice_Physmove_Left_0
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 1292
+        width: 262
+        height: 739
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Alice_Physmove_Left_1
+      rect:
+        serializedVersion: 2
+        x: 662
+        y: 1292
+        width: 273
+        height: 739
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Alice_Physmove_Left_2
+      rect:
+        serializedVersion: 2
+        x: 1186
+        y: 1291
+        width: 288
+        height: 740
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Alice_Physmove_Left_3
+      rect:
+        serializedVersion: 2
+        x: 1704
+        y: 1291
+        width: 303
+        height: 733
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Alice_Physmove_Left_4
+      rect:
+        serializedVersion: 2
+        x: 2229
+        y: 1291
+        width: 310
+        height: 733
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Alice_Physmove_Left_5
+      rect:
+        serializedVersion: 2
+        x: 2753
+        y: 1285
+        width: 316
+        height: 745
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Alice_Physmove_Left_6
+      rect:
+        serializedVersion: 2
+        x: 3271
+        y: 1291
+        width: 325
+        height: 740
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Alice_Physmove_Left_7
+      rect:
+        serializedVersion: 2
+        x: 3788
+        y: 1292
+        width: 333
+        height: 739
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Alice_Physmove_Left_8
+      rect:
+        serializedVersion: 2
+        x: 4306
+        y: 1299
+        width: 339
+        height: 732
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Alice_Physmove_Left_9
+      rect:
+        serializedVersion: 2
+        x: 4838
+        y: 1299
+        width: 318
+        height: 732
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Alice_Physmove_Left_10
+      rect:
+        serializedVersion: 2
+        x: 5363
+        y: 1299
+        width: 303
+        height: 732
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Alice_Physmove_Left_11
+      rect:
+        serializedVersion: 2
+        x: 5887
+        y: 1299
+        width: 289
+        height: 739
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Alice_Physmove_Left_12
+      rect:
+        serializedVersion: 2
+        x: 6405
+        y: 1299
+        width: 281
+        height: 740
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Alice_Physmove_Left_13
+      rect:
+        serializedVersion: 2
+        x: 6922
+        y: 1292
+        width: 280
+        height: 746
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Alice_Physmove_Left_14
+      rect:
+        serializedVersion: 2
+        x: 7411
+        y: 1291
+        width: 302
+        height: 740
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Alice_Physmove_Left_15
+      rect:
+        serializedVersion: 2
+        x: 7913
+        y: 1291
+        width: 317
+        height: 740
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Alice_Physmove_Left_16
+      rect:
+        serializedVersion: 2
+        x: 8423
+        y: 1291
+        width: 324
+        height: 740
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Alice_Physmove_Left_17
+      rect:
+        serializedVersion: 2
+        x: 8948
+        y: 1291
+        width: 325
+        height: 733
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Alice_Physmove_Left_18
+      rect:
+        serializedVersion: 2
+        x: 9482
+        y: 1291
+        width: 323
+        height: 733
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Alice_Physmove_Left_19
+      rect:
+        serializedVersion: 2
+        x: 10019
+        y: 1292
+        width: 311
+        height: 732
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Alice_Physmove_Left_20
+      rect:
+        serializedVersion: 2
+        x: 10559
+        y: 1299
+        width: 299
+        height: 721
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Alice_Physmove_Left_21
+      rect:
+        serializedVersion: 2
+        x: 11099
+        y: 1295
+        width: 266
+        height: 725
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Alice_Physmove_Left_23
+      rect:
+        serializedVersion: 2
+        x: 11638
+        y: 1291
+        width: 236
+        height: 731
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Alice_Physmove_Left_24
+      rect:
+        serializedVersion: 2
+        x: 12170
+        y: 1291
+        width: 211
+        height: 732
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Alice_Physmove_Left_25
+      rect:
+        serializedVersion: 2
+        x: 12695
+        y: 1291
+        width: 192
+        height: 732
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Alice_Physmove_Left_26
+      rect:
+        serializedVersion: 2
+        x: 13213
+        y: 1292
+        width: 199
+        height: 731
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Alice_Physmove_Left_27
+      rect:
+        serializedVersion: 2
+        x: 13730
+        y: 1299
+        width: 207
+        height: 724
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Alice_Physmove_Left_28
+      rect:
+        serializedVersion: 2
+        x: 14225
+        y: 1306
+        width: 236
+        height: 717
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Alice_Physmove_Left_29
+      rect:
+        serializedVersion: 2
+        x: 14713
+        y: 1314
+        width: 273
+        height: 709
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Alice_Physmove_Left_50
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 381
+        width: 270
+        height: 710
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Alice_Physmove_Left_51
+      rect:
+        serializedVersion: 2
+        x: 625
+        y: 381
+        width: 266
+        height: 710
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Alice_Physmove_Left_52
+      rect:
+        serializedVersion: 2
+        x: 1142
+        y: 381
+        width: 273
+        height: 710
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

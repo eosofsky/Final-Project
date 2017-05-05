@@ -15,12 +15,21 @@ public class MarchHare : MonoBehaviour, Interactable {
 		anim = GetComponent<Animator> ();
 	}
 
-	public void Interact () {
-		if (Alice.hasKey && !freed) {
+	void Update () {
+		if (sprite.activeSelf && Input.GetKeyDown (KeyCode.E)) {
 			anim.SetBool ("Freed", true);
 			freed = true;
-			string[] lines = {"Thanks for freeing me from that\ndeadlock Alice!", "The White Rabbit has really caused\na lot of damage around here!"};
+			string[] lines = {
+				"Thanks for freeing me from that\ndeadlock, Alice!",
+				"The White Rabbit has really caused\na lot of damage around here!"
+			};
 			Speech.Instance.Speak (lines, "March Hare", 0.0f, HackerDialogue.Advance, icon);
+		}
+	}
+
+	public void Interact () {
+		if (Alice.hasKey && !freed) {
+			PlayerEntry ();
 		}
 	}
 

@@ -39,6 +39,9 @@ public class Entry : MonoBehaviour {
 		case "Bus Terminal":
 			Alice.transform.position = positions[8];
 			break;
+		case "Bus Interior":
+			Alice.transform.position = positions[9];
+			break;
 		default:
 			break;
 		}

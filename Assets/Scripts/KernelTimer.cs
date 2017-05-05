@@ -9,10 +9,10 @@ public class KernelTimer : MonoBehaviour {
     private static float limit = 10.0f;
     private static float watches = 20.0f;
     private static bool timerStart = true;
+    private static int watchIndex;
 
     private Image image;
     private Sprite[] Stopwatches;
-    private int watchIndex;
 
 
 	void Awake ()

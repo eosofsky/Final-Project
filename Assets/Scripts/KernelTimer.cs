@@ -20,9 +20,12 @@ public class KernelTimer : MonoBehaviour {
 	void Awake ()
     {
         Stopwatches = Resources.LoadAll<Sprite>("Stopwatch");
-        image = GetComponentInChildren<Image>();
         ShowKernelMem (Alice.hatActive);
         tick = GameObject.Find("tick_tock");
+	}
+
+	void Start () {
+		image = GetComponentInChildren<Image>();
 	}
 
 	void Update () {
@@ -31,7 +34,9 @@ public class KernelTimer : MonoBehaviour {
             time = 0.0f;
             timerStart = false;
 			ShowKernelMem(true);
-            image.enabled = true;
+			if (image) {
+				image.enabled = true;
+			}
         } else if (Alice.hatActive) {
             time += Time.deltaTime;
         }
@@ -62,7 +67,9 @@ public class KernelTimer : MonoBehaviour {
                 return;
             }
             var spriteName = string.Format("Frame {0}", watchIndex);
-            image.sprite = FindFrame(spriteName);
+			if (image) {
+				image.sprite = FindFrame (spriteName);
+			}
             watchIndex++;
         }
     }
@@ -74,7 +81,9 @@ public class KernelTimer : MonoBehaviour {
         ShowKernelMem(false);
 		Alice.RemoveHat ();
 		timerStart = true;
-        image.enabled = false;
+		if (image) {
+			image.enabled = false;
+		}
 	}
 
 	private void ShowKernelMem (bool show) {

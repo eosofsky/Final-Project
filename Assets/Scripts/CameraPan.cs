@@ -9,21 +9,26 @@ public class CameraPan : MonoBehaviour {
     private GameObject nextStop;
     private int index;
     private bool onTrack;
+	private static bool hasStarted = false;
+
+	private bool shouldPan = true;
 
 	// Use this for initialization
 	void Start () {
-        AliceMovement.DisableMovement();
-        if (track.Length > 1)
-        {
-            nextStop = track[1];
-            index = 1;
-            onTrack = true;
-        }
-        else
-        {
-            AliceMovement.EnableMovement();
-            onTrack = false;
-        }
+		if (hasStarted) {
+			shouldPan = false;
+			return;
+		}
+		AliceMovement.DisableMovement ();
+		if (track.Length > 1) {
+			nextStop = track [1];
+			index = 1;
+			onTrack = true;
+		} else {
+			AliceMovement.EnableMovement ();
+			onTrack = false;
+		}
+		hasStarted = true;
 	}
 
     private bool AlmostEquals(Vector3 one, Vector3 two)
@@ -44,6 +49,9 @@ public class CameraPan : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
+		if (!shouldPan) {
+			return;
+		}
 		if (onTrack)
         {
             var targetLocation = nextStop.transform.position;

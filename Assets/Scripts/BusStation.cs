@@ -18,7 +18,6 @@ public class BusStation : MonoBehaviour {
 		if (busIsFixed) {
 			Destroy (GameObject.Find ("out_of_order"));
 			Bus.shouldDrive = true;
-			//GameObject.Find ("Bus").GetComponent<Bus> ().shouldDrive = true;
 		}
 	}
 

@@ -32,7 +32,6 @@ public class SwitchHub : MonoBehaviour, Interactable {
 			Alice.ExtinguishFire ();
 			ignite = false;
 			sr.enabled = false;
-			Mail.Activate ();
 			BusStation.busIsFixed = true;
 			Tunnel.shouldBeOnFire = false;
 		}

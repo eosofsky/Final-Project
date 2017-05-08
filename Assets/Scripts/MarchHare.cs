@@ -13,10 +13,13 @@ public class MarchHare : MonoBehaviour, Interactable {
 
 	void Awake () {
 		anim = GetComponent<Animator> ();
+		if (freed) {
+			anim.SetBool ("Freed", true);
+		}
 	}
 
 	void Update () {
-		if (sprite.activeSelf && Input.GetKeyDown (KeyCode.E)) {
+		if (sprite.activeSelf && Input.GetKeyDown (KeyCode.E) && !freed) {
 			anim.SetBool ("Freed", true);
 			freed = true;
 			string[] lines = {

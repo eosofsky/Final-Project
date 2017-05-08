@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class RabbitDialogue : MonoBehaviour {
 
@@ -10,11 +11,13 @@ public class RabbitDialogue : MonoBehaviour {
 	private static bool stepStarted = false;
 	private static string myName = "White Rabbit";
 	private static Sprite staticIcon;
-	private static bool AliceSpoke = false;
 	private static bool hasStarted = false;
 
 	void Awake () {
 		staticIcon = myIcon;
+		if (!hasStarted) {
+			Advance ();
+		}
 	}
 
 	void Update () {
@@ -39,11 +42,8 @@ public class RabbitDialogue : MonoBehaviour {
 			GameObject Rabbit = GameObject.Find ("Rabbit");
 			string[] lines = { "So you found me trolololol!!!\nSo what? It’s too late to stop me now! " };
 			BossDoorway.canPass = false;
-			Speech.Instance.Speak (lines, myName, 250.0f, AliceOrRabbitAdvance, staticIcon);
+			Speech.Instance.Speak (lines, myName, 250.0f, AliceAdvanceAndPass, staticIcon);
 			hasStarted = true;
-		} else {
-			step = 1;
-			stepStarted = false;
 		}
 	}
 
@@ -58,30 +58,25 @@ public class RabbitDialogue : MonoBehaviour {
 			Speech.Instance.Speak (lines, myName, 250.0f, AllowPass, staticIcon);
 		} else {
 			string[] lines = {
-				"Trololololo!!! What a complete amateur you are!", "Everyone knows that a good hacker", "would keep multiple backups of his\nCORE files!",
+				"Trololololo!!! What a complete\namateur you are!", "Everyone knows that a good hacker", "would keep multiple backups of his\nCORE files!",
 				"Wait.. No! IT CAN’T BE! YOU DESTROYED\nMY CORE FILES.. NO NO NOOOO!!!?"
 			};
-			Speech.Instance.Speak (lines, myName, 250.0f, AllowPass/*end game*/, staticIcon);
+			Speech.Instance.Speak (lines, myName, 250.0f, EndGame, staticIcon);
 		}
+		step--;
+	}
+
+	private static void EndGame () {
+		SceneManager.LoadScene ("End");
 	}
 
 	private static void AllowPass () {
 		BossDoorway.canPass = true;
 	}
 
-	private static void AliceOrRabbitAdvance () {
+	private static void AliceAdvanceAndPass () {
 		BossDoorway.canPass = true;
-		if (AliceSpoke) {
-			Advance ();
-		} else {
-			AliceDialogue.Advance ();
-		}
-		AliceSpoke = true;
-	}
-
-	public static void Restart () {
-		step = 0;
-		stepStarted = false;
+		AliceDialogue.Advance ();
 	}
 
 	public static void Advance () {

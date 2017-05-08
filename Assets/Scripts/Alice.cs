@@ -36,7 +36,6 @@ public class Alice : MonoBehaviour {
 	}
 
 	void Start () {
-		//spriteRender.sprite = SwitchWorlds.physical ? myPhysicalAlice : myDigitalAlice;
 		spriteRender.sprite = physical ? myPhysicalAlice : myDigitalAlice;
 	}
 
@@ -47,7 +46,6 @@ public class Alice : MonoBehaviour {
 
 		if (Input.GetKeyDown(KeyCode.H) && hasHat && !hatActive && !physical)
         {
-			Debug.Log ("Activating hat");
             hatActive = true;
 			if (anim) {
 				anim.SetTrigger ("WearHat");
@@ -56,10 +54,10 @@ public class Alice : MonoBehaviour {
 	}
 
 	public static void RemoveHat () {
-		Debug.Log ("Deactivating hat");
-		hatActive = false;
-		if (!isphysical && anim) {
+		if (!isphysical && anim && hatActive) {
+			anim.SetBool ("HasHat", false);
 			anim.SetTrigger ("RemoveHat");
+			hatActive = false;
 		}
 	}
 
